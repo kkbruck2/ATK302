@@ -1,0 +1,21 @@
+function mouseClicked(event) {
+  if (value === 0) {
+    value = 255;
+  } else {
+    value = 0;
+  }
+}black 50x50 rect turns white with mouse click/press.editresetcopy
+
+
+  if (mouseIsPressed) {
+    //console.log(mouseX + ', ' + mouseY);
+    console.log("hello");
+    //eyes
+    fill(255, 0, 0);
+    ellipse(72, 126, 14, 12);
+    ellipse(49, 125, 14, 12);
+
+
+  }
+
+}
