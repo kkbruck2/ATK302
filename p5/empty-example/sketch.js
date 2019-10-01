@@ -1,7 +1,12 @@
-function setup() {
-  // put setup code here
+var
+
+
+function preload() {
+  soundFormats('mp3', 'ogg');
+  mySound = loadSound('assets/doorbell.mp3');
 }
 
-function draw() {
-  // put drawing code here
+function setup() {
+  mySound.setVolume(0.1);
+  mySound.play();
 }

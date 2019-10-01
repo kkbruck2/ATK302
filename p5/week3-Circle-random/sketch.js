@@ -11,8 +11,6 @@ function draw() {
 }
 
 function mouseReleased() {
-  stroke(random(255), 0, 0);
-  strokeWeight(random());
   fill(random(255), 0, 0);
   ellipse(mouseX, mouseY, 50, 50);
 }
