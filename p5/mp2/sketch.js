@@ -1,27 +1,243 @@
+var grid;
 var virus;
 var bkg;
 var extCell;
 var process;
 var hivStructure;
-
+var hivLgVirus;
+var mic;
+var hivState = 0;
+var mic;
+var vol;
+var delayTimer = 0;
 
 function preload() {
-  virus = loadImage('assets/SVG/hivVirus.svg');
-  bkg = loadImage('assets/bkg.png');
-  extCell = loadImage('assets/SVG/extCell.svg');
-  process = loadImage('assets/SVG/process.svg');
-  hivStructure = loadImage('assets/SVG/hivStructure.svg');
+
+  virus = loadImage('assets/hivVirus.png');
+  bkg = loadImage('assets/bkg.jpg');
+  extCell = loadImage('assets/outerCell.png');
+  process = loadImage('assets/process.png');
+  hivStructure = loadImage('assets/hivStructure.png');
+  hivLgVirus = loadImage('assets/hivLgVirus.png');
+  mic = loadImage('assets/SVG/mic.svg');
 }
 
 function setup() {
-  createCanvas(1280, 720);
-  // mySound.setVolume(0.1);
-  // mySound.play();
+  createCanvas(1080, 720);
+  grid = loadImage('assets/grid.png');
+  // mic = new p5.AudioIn();
+  // // start the Audio Input.
+  // mic.start();
+
 }
 
 function draw() {
-  image(bkg, 0, 0, 1280, 720);
+  image(bkg, 0, 0);
 
 
+//   vol = mic.getLevel(.5);
+//   vol = vol * 10;
+// //   //use this to "debounce the sound input"
+// // if(delayTimer > 0) {
+// //   delayTimer--;
+// // }
+// // if((vol > 2) && (delayTimer == 0)) {
+// //   delayTimer = 30;
+// // }
+
+
+  switch (hivState) {
+    //Opening screen
+
+    case 0:
+
+      image(hivLgVirus, 380, 150);
+
+      image(mic, 510, 500, 50, 100);
+
+      textSize(48);
+      fill(153, 51, 0);
+      textStyle(BOLD);
+      text("HIV Replication Cycle", 300, 110);
+
+      textSize(24);
+      fill(153, 51, 0);
+      textStyle(ITALIC);
+      text("Click on mic and say GO!", 405, 650);
+
+      break;
+      //Using mic and sound in to switch
+
+    case 1:
+      //label virus and cell
+      image(extCell, 0, 0);
+
+      image(virus, 89, 45);
+
+      textSize(24);
+      fill(153, 51, 0);
+      textStyle(BOLD);
+      text("HIV virus", 85, 40);
+      textSize(30);
+      text("Target cell", 300, 280);
+
+      textSize(24);
+      fill(153, 51, 0);
+      textStyle(ITALIC);
+      text("Drag HIV virus into the target cell!", 375, 50);
+
+      break;
+      //drag virus over the cell
+
+    case 2:
+      //sound in to start
+      image(process, 0, 0);
+
+      image(virus, 89, 45);
+
+
+
+      textSize(36);
+      fill(153, 51, 0);
+      textStyle(BOLD);
+      text("Replication process", 380, 50);
+
+      break;
+      //click on virus structure to move on.
+    case 3:
+      //structure
+
+      image(hivStructure, 190, 80);
+      noStroke();
+      textSize(36);
+      fill(153, 51, 0);
+      textStyle(BOLD);
+      text("HIV Structure", 400, 50);
+
+      textSize(20);
+      fill(0);
+      textStyle(NORMAL);
+      text("Protease", 600, 90);
+      text("Membrane envelope", 700, 130);
+      text("Reverse transcriptase", 755, 180);
+      text("Matrix", 810, 250);
+      text("RNA", 810, 320);
+      text("Capsid", 810, 400);
+      text("Integrase", 795, 493);
+      text("Surface (SU)", 740, 560);
+      text("Transmembrane (TM)", 660, 650);
+      text("Glycoprotein", 885, 602);
+
+      stroke(0);
+      line(470, 270, 610, 95);
+      line(610, 180, 695, 125);
+      line(520, 320, 750, 175);
+      line(640, 298, 805, 245);
+      line(500, 365, 805, 315);
+      line(590, 400, 805, 395);
+      line(500, 400, 790, 485);
+      line(665, 553, 735, 553);
+      line(472, 580, 655, 635);
+      line(870, 595, 880, 595);
+
+      noFill()
+      beginShape();
+      vertex(860, 535);
+      vertex(870, 535);
+      vertex(870, 660);
+      vertex(860, 660);
+      endShape();
+
+
+      break;
+
+    case 4:
+      //structure quiz
+
+      image(hivStructure, 190, 80);
+
+      textSize(36);
+      fill(153, 51, 0);
+      textStyle(BOLD);
+      text("HIV Structure Quiz", 350, 50);
+
+      textSize(20);
+      fill(0);
+      textStyle(NORMAL);
+      text("RNA", 60, 100);
+      text("Transmembrane (TM)", 60, 160);
+      text("Integrase", 60, 220);
+      text("Capsid", 60, 280);
+      text("Surface (SU)", 60, 340);
+      text("Protease", 60, 400);
+      text("Glycoprotein", 60, 460);
+      text("Matrix", 60, 520);
+      text("Membrane envelope", 60, 580);
+      text("Reverse transcriptase", 60, 640);
+
+      stroke(0);
+      line(470, 270, 610, 95);
+      line(610, 180, 695, 125);
+      line(520, 320, 750, 175);
+      line(640, 298, 805, 245);
+      line(500, 365, 805, 315);
+      line(590, 400, 805, 395);
+      line(500, 400, 790, 485);
+      line(665, 553, 695, 553);
+      line(472, 580, 655, 635);
+      line(870, 595, 880, 595);
+
+      noFill()
+      beginShape();
+      vertex(860, 525);
+      vertex(870, 525);
+      vertex(870, 660);
+      vertex(860, 660);
+      endShape();
+
+      fill(255, 255 , 255, 120);
+      stroke(153, 51, 0)
+      rect(615, 65, 240, 35);
+      rect(700, 110, 240, 35);
+      rect(755, 155, 240, 35);
+      rect(810, 225, 240, 35);
+      rect(810, 295, 240, 35);
+      rect(810, 375, 240, 35);
+      rect(795, 465, 240, 35);
+      rect(700, 535, 160, 35);
+      rect(660, 615, 200, 35);
+      rect(885, 578, 160, 35);
+      break;
+
+    case 5:
+      //Ending screen
+      image(extCell, 0, 0);
+
+      image(virus, 89, 45);
+
+      textSize(24);
+      fill(153, 51, 0);
+      textStyle(ITALIC);
+      text("Coming soon: Attachment and Entry Into Target Cell", 250, 50);
+      break;
+
+  }
+
+      //image(grid, 0, 0);
 
 }
+
+function mouseReleased() {
+  hivState++;
+  if(hivState > 5) {
+    hivState = 0;
+  }
+
+}
+
+// function touchStarted() {
+//   getAudioContext() .resume();
+//   if(hivState = 0) {
+//     hivState = 1;
+//   }
+// }

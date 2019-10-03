@@ -1,3 +1,4 @@
+var grid = 'assets/grid.png'
 var myState = 0;
 var timer = 200;
 
