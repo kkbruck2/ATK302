@@ -19,7 +19,7 @@ function preload() {
   process = loadImage('assets/process.png');
   hivStructure = loadImage('assets/hivStructure.png');
   hivLgVirus = loadImage('assets/hivLgVirus.png');
-  mic = loadImage('assets/SVG/mic.svg');
+  mic = loadImage('assets/mic.png');
 }
 
 function setup() {
