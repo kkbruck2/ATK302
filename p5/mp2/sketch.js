@@ -25,26 +25,30 @@ function preload() {
 function setup() {
   createCanvas(1080, 720);
   grid = loadImage('assets/grid.png');
-  // mic = new p5.AudioIn();
-  // // start the Audio Input.
-  // mic.start();
+  // Create an Audio input
+  mic = new p5.AudioIn();
+
+  // start the Audio Input.
+  // By default, it does not .connect() (to the computer speakers)
+  mic.start();
 
 }
 
 function draw() {
   image(bkg, 0, 0);
 
+  vol = mic.getLevel();
+  vol = vol * 100;
 
-//   vol = mic.getLevel(.5);
-//   vol = vol * 10;
-// //   //use this to "debounce the sound input"
-// // if(delayTimer > 0) {
-// //   delayTimer--;
-// // }
-// // if((vol > 2) && (delayTimer == 0)) {
-// //   delayTimer = 30;
-// // }
+  if (delayTimer > 0) {
+        delayTimer--;
+  }
 
+  if ((vol > 5) && (delayTimer == 0)) { // you may have to change that 9
+    delayTimer = 30;
+
+    hivState = 1;
+  }
 
   switch (hivState) {
     //Opening screen

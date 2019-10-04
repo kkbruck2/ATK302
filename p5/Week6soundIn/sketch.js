@@ -7,6 +7,7 @@ var hivStructure;
 var hivLgVirus;
 var micIcon;
 var hivState = 0;
+var hivStart = 0;
 var vol;
 var delayTimer = 0;
 
@@ -37,43 +38,69 @@ function setup() {
 
 function draw() {
   image(bkg, 0, 0);
-  image(hivLgVirus, 380, 150);
 
-  image(micIcon, 510, 500, 50, 100);
-
-  textSize(48);
-  fill(153, 51, 0);
-  textStyle(BOLD);
-  text("HIV Replication Cycle", 300, 110);
-
-  textSize(24);
-  fill(153, 51, 0);
-  textStyle(ITALIC);
-  text("Click on mic and say GO!", 405, 650);
-
-  // Get the overall volume (between 0 and 1.0)
   vol = mic.getLevel();
   vol = vol * 100;
 
   if (delayTimer > 0) {
-  delayTimer--;
-}
+        delayTimer--;
+  }
 
-  if ((vol > 5) && (delayTimer == 0)) {  // you may have to change that 9
-  delayTimer = 30;
+  if ((vol > 5) && (delayTimer == 0)) { // you may have to change that 9
+    delayTimer = 30;
 
-      // do something like advance the state (myState++)
+    hivState = 1;
+    // if (hivState = 1) {
+    //   hivState = 0
+    // }
+  }
 
-}
 
+
+  switch (hivStart) {
+    //Opening screen
+
+    case 0:
+
+     image(hivLgVirus, 380, 150);
+
+
+      break;
+      //Using mic and sound in to switch
+
+    case 1:
+      image(virus, 89, 45);
+
+      break;
+
+    case 2:
+        image(extCell, 89, 45);
+
+        break;
+        //drag virus over the cell
+      //drag virus over the cell
+    }
 
 
   // Draw an ellipse with height based on volume
-  let h = map(vol, 0, 1, height, 0);
-  ellipse(width / 2, h - 25, 50, 50);
-  image(virus, 89, 45);
+
+  // let h = map(vol, 0, 1, height, 0);
+  // ellipse(width / 2, h - 25, 50, 50);
+
+
+  // textSize(40);
+  // fill(0);
+  // text("My volume is " + vol, 80, 400);
+  // text("Your Score is  " + score, 80, 600);
+
+
+
+
+//end draw
 }
 
+
+
 function touchStarted() {
-  getAudioContext() .resume();
+  getAudioContext().resume();
 }
