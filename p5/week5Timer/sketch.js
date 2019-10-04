@@ -2,6 +2,7 @@ var grid;
 var virus;
 var process;
 var bkg;
+var micIcon;
 
 var hivTimer = 0;
 
@@ -11,6 +12,7 @@ function preload() {
   virus = loadImage('assets/hivVirus.png');
   process = loadImage('assets/process.png');
   bkg = loadImage('assets/bkg.jpg');
+  micIcon = loadImage('assets/mic.png');
 }
 
 function setup() {
@@ -35,29 +37,30 @@ function draw() {
 
   stroke(153, 51, 0);
   strokeWeight(2);
-
+//1
   rect(78, 40, 120, 110);
+//2
+  rect(224, 85, 120, 110);
+//3
+  rect(119, 230, 120, 110);
+//4
+  rect(290, 291, 120, 110);
+//5
+  rect(470, 322, 120, 110);
+//6
+  rect(700, 305, 120, 110);
+//7
+  rect(800, 485, 120, 110);
+//8
+  rect(951, 450, 120, 110);
+//9
+  rect(886, 238, 120, 110);
+//10
+  rect(800, 92, 120, 110);
 
-  rect(214, 69, 120, 115);
+  rect(934, 35, 120, 110);
 
-  rect(79, 196, 170, 135);
-
-  rect(302, 291, 100, 130);
-
-  rect(418, 342, 150, 90);
-
-  rect(590, 313, 250, 180);
-
-  rect(845, 484, 80, 90);
-
-  rect(951, 484, 80, 90);
-
-  rect(886, 238, 170, 135);
-
-  rect(812, 92, 110, 110);
-
-  rect(934, 35, 110, 110);
-
+image(micIcon, 10, 610, 50, 100);
 
 
 

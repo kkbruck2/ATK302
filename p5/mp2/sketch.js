@@ -10,6 +10,8 @@ var hivState = 0;
 var mic;
 var vol;
 var delayTimer = 0;
+var x = 0;
+var y = 0;
 
 function preload() {
 
@@ -44,10 +46,15 @@ function draw() {
         delayTimer--;
   }
 
-  if ((vol > 5) && (delayTimer == 0)) { // you may have to change that 9
+  if ((vol > 7) && (delayTimer == 0)) { // you may have to change that 9
     delayTimer = 30;
 
-    hivState = 1;
+    hivState++;
+
+  //  hivState = 1;
+  }
+  if (hivState > 5) {
+    hivState = 0
   }
 
   switch (hivState) {
@@ -57,15 +64,18 @@ function draw() {
 
       image(hivLgVirus, 380, 150);
 
-      image(micIcon, 510, 500, 50, 100);
+      image(micIcon, 510, 518, 50, 100);
 
       textSize(48);
       fill(153, 51, 0);
       textStyle(BOLD);
       text("HIV Replication Cycle", 300, 110);
 
+      textSize(18);
+      textStyle(ITALIC);
+      text("When you see a mic say NEXT to move on", 372, 500);
+
       textSize(24);
-      fill(153, 51, 0);
       textStyle(ITALIC);
       text("Click on mic and say GO!", 405, 650);
 
@@ -85,10 +95,7 @@ function draw() {
       textSize(30);
       text("Target cell", 300, 280);
 
-      textSize(24);
-      fill(153, 51, 0);
-      textStyle(ITALIC);
-      text("Drag HIV virus into the target cell!", 375, 50);
+      image(micIcon, 10, 610, 50, 100);
 
       break;
       //drag virus over the cell
@@ -110,6 +117,7 @@ function draw() {
       //click on virus structure to move on.
     case 3:
       //structure
+      image(micIcon, 10, 610, 50, 100);
 
       image(hivStructure, 190, 80);
       noStroke();
@@ -157,6 +165,7 @@ function draw() {
 
     case 4:
       //structure quiz
+      image(micIcon, 10, 610, 50, 100);
 
       image(hivStructure, 190, 80);
 
@@ -215,14 +224,22 @@ function draw() {
 
     case 5:
       //Ending screen
-      image(extCell, 0, 0);
-
-      image(virus, 89, 45);
-
-      textSize(24);
+      image(micIcon, 10, 610, 50, 100);
+      textSize(30);
       fill(153, 51, 0);
       textStyle(ITALIC);
-      text("Coming soon: Attachment and Entry Into Target Cell", 250, 50);
+
+      image(extCell, 0, 0);
+
+      image(virus, 100, 70);
+
+      text("Coming soon: Attachment and Entry Into Target Cell", x, 50);
+      x += 5;
+      if (x > width) {
+        x = -700;
+      }
+
+
       break;
 
   }
@@ -231,17 +248,12 @@ function draw() {
 
 }
 
-function mouseReleased() {
-  hivState++;
-  if(hivState > 5) {
-    hivState = 0;
-  }
-
-}
-
-// function touchStarted() {
-//   getAudioContext() .resume();
-//   if(hivState = 0) {
-//     hivState = 1;
+// function mouseReleased() {
+//   if(hivState >= 1) {
+//   hivState++;
+// }
+//   if(hivState > 5) {
+//     hivState = 0;
 //   }
+//
 // }
