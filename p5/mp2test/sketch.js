@@ -29,10 +29,10 @@ function setup() {
   grid = loadImage('assets/grid.png');
   // Create an Audio input
   mic = new p5.AudioIn();
-  mic.start();
+
   // start the Audio Input.
   // By default, it does not .connect() (to the computer speakers)
-
+  mic.start();
 
 }
 
