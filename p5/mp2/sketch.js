@@ -40,7 +40,7 @@ function draw() {
   image(bkg, 0, 0);
 
   vol = mic.getLevel();
-  vol = vol * 100;
+  vol = vol * 150;
 
   if (delayTimer > 0) {
         delayTimer--;
@@ -95,7 +95,7 @@ function draw() {
       textSize(30);
       text("Target cell", 300, 280);
 
-      image(micIcon, 10, 610, 50, 100);
+      image(micIcon, 15, 630, 35, 70);
 
       break;
       //drag virus over the cell
@@ -113,11 +113,13 @@ function draw() {
       textStyle(BOLD);
       text("Replication process", 380, 50);
 
+      image(micIcon, 15, 630, 35, 70);
+
       break;
       //click on virus structure to move on.
     case 3:
       //structure
-      image(micIcon, 10, 610, 50, 100);
+      image(micIcon, 15, 630, 35, 70);
 
       image(hivStructure, 190, 80);
       noStroke();
@@ -165,7 +167,7 @@ function draw() {
 
     case 4:
       //structure quiz
-      image(micIcon, 10, 610, 50, 100);
+      image(micIcon, 15, 630, 35, 70);
 
       image(hivStructure, 190, 80);
 
@@ -224,7 +226,7 @@ function draw() {
 
     case 5:
       //Ending screen
-      image(micIcon, 10, 610, 50, 100);
+      image(micIcon, 15, 630, 35, 70);
       textSize(30);
       fill(153, 51, 0);
       textStyle(ITALIC);

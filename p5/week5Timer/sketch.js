@@ -3,8 +3,9 @@ var virus;
 var process;
 var bkg;
 var micIcon;
+var processTime = 0;
 
-var hivTimer = 0;
+var timer = 0;
 
 
 function preload() {
@@ -24,6 +25,9 @@ function setup() {
 function draw() {
   image(bkg, 0, 0);
 
+  // print(timer);
+
+
   noStroke();
   image(process, 0, 0);
   image(virus, 89, 45);
@@ -31,59 +35,99 @@ function draw() {
   fill(153, 51, 0);
   textStyle(BOLD);
   text("Replication process", 380, 50);
-
   noFill();
-//  stroke(255);
-
   stroke(153, 51, 0);
   strokeWeight(2);
-//1
-  rect(78, 40, 120, 110);
-//2
-  rect(224, 85, 120, 110);
-//3
-  rect(119, 230, 120, 110);
-//4
-  rect(290, 291, 120, 110);
-//5
-  rect(470, 322, 120, 110);
-//6
-  rect(700, 305, 120, 110);
-//7
-  rect(800, 485, 120, 110);
-//8
-  rect(951, 450, 120, 110);
-//9
-  rect(886, 238, 120, 110);
-//10
-  rect(800, 92, 120, 110);
 
-  rect(934, 35, 120, 110);
+  timer++;
 
-image(micIcon, 10, 610, 50, 100);
+  if ((timer >= 100) && (processTime < 10)) {
+    processTime++;
+    timer = 0;
+
+  }
 
 
 
-//  image(grid, 0, 0);
+  switch (processTime) {
+    case 0:
+      //structure
+      rect(78, 40, 120, 110);
+
+      break;
+
+    case 1:
+      //Attachment
+      rect(224, 85, 120, 110);
+      break;
+
+    case 2:
+      //reverse transcription
+      rect(119, 230, 120, 110);
+      break;
+
+    case 3:
+      //intergration
+      rect(290, 291, 120, 110);
+      break;
+
+    case 4:
+      //transcription
+      rect(470, 322, 120, 110);
+      break;
+
+    case 5:
+      //translation
+      rect(576, 389, 120, 110);
+
+      break;
+
+    case 6:
+      //budding
+      rect(816, 480, 120, 110);
+      break;
+
+    case 7:
+
+      //assembly
+      rect(929, 236, 120, 110);
+      break;
+
+    case 8:
+      //maturing
+      rect(815, 92, 120, 110);
+      break;
+
+    case 9:
+      //released
+      rect(930, 35, 120, 110);
+      break;
+
+    case 10:
+      image(micIcon, 15, 630, 35, 70);
+      rect(78, 40, 120, 110);
+      break;
+  }
 
 
-  // switch (hivTimer) {
-  //
-  //   case 0: // green state
 
-    // break;
+  //  image(grid, 0, 0);
 
-      //end of draw
+
+  //end of draw
 
 }
+
+// function mouseReleased() {
+//   processTime++;
+//
+//   if (processTime >= 11) {
+//     processTime = 11;
+//   }
+//
+// }
+
 
 function mouseReleased() {
   console.log(mouseX + ',' + mouseY);
 }
-  // function (hivTimer) {
-  //   timer--;
-  //   if (timer <= 0) {
-  //     timer = variableTimer;
-  //     myState = variableState;
-  //   }
-  // }
