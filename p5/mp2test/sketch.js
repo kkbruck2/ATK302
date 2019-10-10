@@ -13,6 +13,11 @@ var delayTimer = 0;
 var x = 0;
 var y = 0;
 
+var processTime = 0;
+
+var timer = 0;
+
+
 function preload() {
 
   virus = loadImage('assets/hivVirus.png');
@@ -50,6 +55,7 @@ function draw() {
     delayTimer = 30;
 
     hivState++;
+    hivState <= 1;
 
   //  hivState = 1;
   }
@@ -101,7 +107,7 @@ function draw() {
       //drag virus over the cell
 
     case 2:
-      //sound in to start
+      //timer
       image(process, 0, 0);
 
       image(virus, 89, 45);
@@ -245,9 +251,13 @@ function draw() {
       break;
 
   }
-
       //image(grid, 0, 0);
-
+}
+function timer(processTime) {
+  timer--;
+  if (timer <= 0) {
+    hivState = 2;
+  }
 }
 
 function touchStarted() {

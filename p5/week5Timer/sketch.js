@@ -119,15 +119,5 @@ function draw() {
 }
 
 // function mouseReleased() {
-//   processTime++;
-//
-//   if (processTime >= 11) {
-//     processTime = 11;
-//   }
-//
+//   console.log(mouseX + ',' + mouseY);
 // }
-
-
-function mouseReleased() {
-  console.log(mouseX + ',' + mouseY);
-}
