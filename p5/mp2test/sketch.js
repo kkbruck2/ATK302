@@ -62,9 +62,17 @@ function draw() {
   if (hivState > 5) {
     hivState = 0
   }
+  timer++;
+
+  if ((timer >= 100) && (processTime < 10)) {
+    processTime++;
+    timer = 0;
+
+  }
 
   switch (hivState) {
     //Opening screen
+
 
     case 0:
 
@@ -120,6 +128,65 @@ function draw() {
       text("Replication process", 380, 50);
 
       image(micIcon, 15, 630, 35, 70);
+      switch (processTime) {
+        case 0:
+          //structure
+          rect(78, 40, 120, 110);
+
+          break;
+
+        case 1:
+          //Attachment
+          rect(224, 85, 120, 110);
+          break;
+
+        case 2:
+          //reverse transcription
+          rect(119, 230, 120, 110);
+          break;
+
+        case 3:
+          //intergration
+          rect(290, 291, 120, 110);
+          break;
+
+        case 4:
+          //transcription
+          rect(470, 322, 120, 110);
+          break;
+
+        case 5:
+          //translation
+          rect(576, 389, 120, 110);
+
+          break;
+
+        case 6:
+          //budding
+          rect(816, 480, 120, 110);
+          break;
+
+        case 7:
+
+          //assembly
+          rect(929, 236, 120, 110);
+          break;
+
+        case 8:
+          //maturing
+          rect(815, 92, 120, 110);
+          break;
+
+        case 9:
+          //released
+          rect(930, 35, 120, 110);
+          break;
+
+        case 10:
+          image(micIcon, 15, 630, 35, 70);
+          rect(78, 40, 120, 110);
+          break;
+      }
 
       break;
       //click on virus structure to move on.
