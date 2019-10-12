@@ -44,7 +44,6 @@ function draw() {
   if ((timer >= 100) && (processTime < 10)) {
     processTime++;
     timer = 0;
-
   }
 
 
