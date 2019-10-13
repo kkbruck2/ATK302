@@ -1,13 +1,23 @@
 var song1, song2, song3, song4, song5;
 var myState = 0;
+var rats;
+var bruce;
+var kansas;
+var james;
+var cat;
 
 
 function preload() {
-  song1 = loadSound('assets/Carry On Wayward Son.mp3');
-  song2 = loadSound('assets/Fire And Rain.mp3');
-  song3 = loadSound('assets/Oh Very Young.mp3');
-  song4 = loadSound('assets/Born To Run.mp3');
-  song5 = loadSound('assets/I Dont Like Mondays.mp3')
+  song1 = loadSound('assets/Carry On Wayward Son_01.mp3');
+  song2 = loadSound('assets/Fire And Rain_01.mp3');
+  song3 = loadSound('assets/Oh Very Young_01.mp3');
+  song4 = loadSound('assets/Born To Run_01.mp3');
+  song5 = loadSound('assets/I Dont Like Mondays_01.mp3');
+  rats = loadImage('assets/boomtownRats.jpg');
+  bruce = loadImage('assets/BruceSpringsteen.jpg');
+  kansas = loadImage('assets/kansas.jpg');
+  james = loadImage('assets/jamesTaylor.jpg');
+  cat = loadImage('assets/CatStevens.jpg');
 
 
   // set each song to loop and then immediately pause it so it doesn't play
@@ -22,7 +32,7 @@ function preload() {
 }
 //------------------------------------end preload
 function setup() {
-  createCanvas(200, 200);
+  createCanvas(300, 300);
 
 }
 //-------------------------------------end Setup
@@ -37,7 +47,7 @@ function draw() {
 
 
     case 1:
-      // hang out in here, put some lyrics or pictures or something while the song plays.
+      image(kansas, 0, 0);// hang out in here, put some lyrics or pictures or something while the song plays.
       // put pictures and shapes in here
 
       break; // we would only leave state 1 with a mouseClick
@@ -50,6 +60,7 @@ function draw() {
       break;
 
     case 3:
+    image(james, 0, 0);
       break;
 
     case 4:
@@ -58,6 +69,7 @@ function draw() {
       break;
 
     case 5:
+    image(cat, 0, 0);
       break;
 
     case 6:
@@ -66,6 +78,7 @@ function draw() {
       break;
 
     case 7:
+    image(bruce, 0, 0);
       break;
 
     case 8:
@@ -74,6 +87,7 @@ function draw() {
       break;
 
     case 9:
+    image(rats, 0, 0);
       break;
 
   }
