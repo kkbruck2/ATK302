@@ -45,7 +45,7 @@ function draw() {
   image(bkg, 0, 0);
 
   vol = mic.getLevel();
-  vol = vol * 150;
+  vol = vol * 100;
 
   if (delayTimer > 0) {
         delayTimer--;
@@ -125,12 +125,18 @@ function draw() {
       textSize(36);
       fill(153, 51, 0);
       textStyle(BOLD);
+      noStroke();
       text("Replication process", 380, 50);
+      noFill();
+      stroke(153, 51, 0);
+      strokeWeight(2);
 
-      image(micIcon, 15, 630, 35, 70);
+
+
       switch (processTime) {
         case 0:
           //structure
+
           rect(78, 40, 120, 110);
 
           break;
@@ -192,10 +198,11 @@ function draw() {
       //click on virus structure to move on.
     case 3:
       //structure
+      noStroke();
       image(micIcon, 15, 630, 35, 70);
 
       image(hivStructure, 190, 80);
-      noStroke();
+
       textSize(36);
       fill(153, 51, 0);
       textStyle(BOLD);
@@ -325,6 +332,8 @@ function timer(processTime) {
   if (timer <= 0) {
     hivState = 2;
   }
+
+
 }
 
 function touchStarted() {
