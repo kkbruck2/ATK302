@@ -9,9 +9,10 @@ var micIcon;
 var hivState = 0;
 var mic;
 var vol;
-var delayTimer = 0;
+var delayTimer = 90;
 var x = 0;
 var y = 0;
+var processTimer = 0;
 
 var processTime = 0;
 
@@ -48,27 +49,33 @@ function draw() {
   vol = vol * 100;
 
   if (delayTimer > 0) {
-        delayTimer--;
+    delayTimer--;
   }
 
-  if ((vol > 7) && (delayTimer == 0)) { // you may have to change that 9
-    delayTimer = 30;
+  if ((vol > 20) && (delayTimer == 0)) { // you may have to change that 9
+    delayTimer = 90;
 
     hivState++;
-    hivState <= 1;
+    //  hivState <= 1;
+    timer = 0;
+    processTimer = 0;
+    processTime = 0;
 
-  //  hivState = 1;
+    //  hivState = 1;
   }
   if (hivState > 5) {
     hivState = 0
   }
+
+
   timer++;
 
-  if ((timer >= 100) && (processTime < 10)) {
-    processTime++;
-    timer = 0;
-
-  }
+  // if ((timer >= 100) && (processTime < 10)) {
+  //   processTime++;
+  //   timer = 0;
+  //   delayTimer = 30;
+  //
+  // }
 
   switch (hivState) {
     //Opening screen
@@ -115,6 +122,7 @@ function draw() {
       //drag virus over the cell
 
     case 2:
+      mic.stop();
       //timer
       image(process, 0, 0);
 
@@ -131,9 +139,19 @@ function draw() {
       stroke(153, 51, 0);
       strokeWeight(2);
 
+      processTimer++;
+      if (processTimer > 30) {
+        processTimer = 0;
+        processTime++;
+      }
+      if (processTime > 10) {
+        processTime = 10;
 
+      }
 
       switch (processTime) {
+
+
         case 0:
           //structure
 
@@ -189,12 +207,14 @@ function draw() {
           break;
 
         case 10:
+          mic.start();
           image(micIcon, 15, 630, 35, 70);
           rect(78, 40, 120, 110);
           break;
       }
 
       break;
+
       //click on virus structure to move on.
     case 3:
       //structure
@@ -250,7 +270,7 @@ function draw() {
       image(micIcon, 15, 630, 35, 70);
 
       image(hivStructure, 190, 80);
-
+      noStroke();
       textSize(36);
       fill(153, 51, 0);
       textStyle(BOLD);
@@ -290,7 +310,7 @@ function draw() {
       vertex(860, 660);
       endShape();
 
-      fill(255, 255 , 255, 120);
+      fill(255, 255, 255, 120);
       stroke(153, 51, 0)
       rect(615, 65, 240, 35);
       rect(700, 110, 240, 35);
@@ -325,17 +345,19 @@ function draw() {
       break;
 
   }
-      //image(grid, 0, 0);
-}
-function timer(processTime) {
-  timer--;
-  if (timer <= 0) {
-    hivState = 2;
-  }
+  noStroke();
 
-
+  //image(grid, 0, 0);
 }
+
+// function hivTimer(processTime) {
+//   timer--;
+//   if (timer <= 0) {
+//     hivState = 2;
+//   }
+
+//}
 
 function touchStarted() {
-  getAudioContext() .resume();
+  getAudioContext().resume();
 }
