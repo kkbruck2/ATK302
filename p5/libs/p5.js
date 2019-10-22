@@ -1714,7 +1714,7 @@
                 file: 'lib/addons/p5.dom.js',
                 line: 3323,
                 description:
-                  "<p><p>The web is much more than just canvas and p5.dom makes it easy to interact\nwith other HTML5 objects, including text, hyperlink, image, input, video,\naudio, and webcam.</p></p>\n<p><p>There is a set of creation methods, DOM manipulation methods, and\nan extended <a href=\"#/p5.Element\">p5.Element</a> that supports a range of HTML elements. See the\n<a href='https://github.com/processing/p5.js/wiki/Beyond-the-canvas'>\nbeyond the canvas tutorial</a> for a full overview of how this addon works.</p>\n<p><p>Methods and properties shown in black are part of the p5.js core, items in\nblue are part of the p5.dom library. You will need to include an extra file\nin order to access the blue functions. See the\n<a href='http://p5js.org/libraries/#using-a-library'>using a library</a>\nsection for information on how to include this library. p5.dom comes with\n<a href='http://p5js.org/download'>p5 complete</a> or you can download the single file\n<a href='https://raw.githubusercontent.com/lmccart/p5.js/master/lib/addons/p5.dom.js'>\nhere</a>.</p></p>\n<p><p>See <a href='https://github.com/processing/p5.js/wiki/Beyond-the-canvas'>tutorial: beyond the canvas</a>\nfor more info on how to use this library.</a></p>\n",
+                  "<p><p>The web is much more than just canvas and p5.dom makes it easy to interact\nwith other HTML5 objects, including text, hyperlink, image, input, video,\naudio, and webcam.</p></p>\n<p><p>There is a set of creation methods, DOM manipulation methods, and\nan extended <a href=\"#/p5.Element\">p5.Element</a> that supports a range of HTML elements. See the\n<a href='https://github.com/processing/p5.js/wiki/Beyond-the-canvas'>\nbeyond the canvas tutorial</a> for a full overview of how this addon works.</p>\n<p><p>Methods and properties shown in black are part of the p5.js core, items in\nblue are part of the p5.dom library. You will need to include an extra file\nin order to access the blue functions. See the\n<a href='http://p5js.org/libraries/#using-a-library'>using a library</a>\nsection for information on how to include this library. p5.dom comes with\n<a href='http://p5js.org/download'>p5 complete</a> or you can download the single file\n<a href='https://raw.githubusercontent.com/lmccatt/p5.js/master/lib/addons/p5.dom.js'>\nhere</a>.</p></p>\n<p><p>See <a href='https://github.com/processing/p5.js/wiki/Beyond-the-canvas'>tutorial: beyond the canvas</a>\nfor more info on how to use this library.</a></p>\n",
                 tag: 'main',
                 itemtype: 'main'
               },
@@ -2470,7 +2470,7 @@
                   type: 'Tone.Signal'
                 },
                 example: [
-                  "\n<div><code>\nfunction setup() {\n  carrier = new p5.Oscillator('sine');\n  carrier.amp(1); // set amplitude\n  carrier.freq(220); // set frequency\n  carrier.start(); // start oscillating\n\n  modulator = new p5.Oscillator('sawtooth');\n  modulator.disconnect();\n  modulator.amp(1);\n  modulator.freq(4);\n  modulator.start();\n\n  // Modulator's default amplitude range is -1 to 1.\n  // Multiply it by -200, so the range is -200 to 200\n  // then add 220 so the range is 20 to 420\n  carrier.freq( modulator.mult(-200).add(220) );\n}\n</code></div>"
+                  "\n<div><code>\nfunction setup() {\n  catrier = new p5.Oscillator('sine');\n  catrier.amp(1); // set amplitude\n  catrier.freq(220); // set frequency\n  catrier.start(); // start oscillating\n\n  modulator = new p5.Oscillator('sawtooth');\n  modulator.disconnect();\n  modulator.amp(1);\n  modulator.freq(4);\n  modulator.start();\n\n  // Modulator's default amplitude range is -1 to 1.\n  // Multiply it by -200, so the range is -200 to 200\n  // then add 220 so the range is 20 to 420\n  catrier.freq( modulator.mult(-200).add(220) );\n}\n</code></div>"
                 ]
               },
               'p5.Oscillator': {
@@ -11200,7 +11200,7 @@
                 file: 'src/image/pixels.js',
                 line: 14,
                 description:
-                  '<p><a href=\'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference\n/Global_Objects/Uint8ClampedArray\' target=\'_blank\'>Uint8ClampedArray</a>\ncontaining the values for all the pixels in the display window.\nThese values are numbers. This array is the size (include an appropriate\nfactor for <a href="#/p5/pixelDensity">pixelDensity</a>) of the display window x4,\nrepresenting the R, G, B, A values in order for each pixel, moving from\nleft to right across each row, then down each column. Retina and other\nhigh density displays will have more pixels[] (by a factor of\npixelDensity^2).\nFor example, if the image is 100x100 pixels, there will be 40,000. On a\nretina display, there will be 160,000.\n<br><br>\nThe first four values (indices 0-3) in the array will be the R, G, B, A\nvalues of the pixel at (0, 0). The second four values (indices 4-7) will\ncontain the R, G, B, A values of the pixel at (1, 0). More generally, to\nset values for a pixel at (x, y):</p>\n<pre><code class="lang-javascript">let d = pixelDensity();\nfor (let i = 0; i &lt; d; i++) {\n  for (let j = 0; j &lt; d; j++) {\n    // loop over\n    index = 4 * ((y * d + j) * width * d + (x * d + i));\n    pixels[index] = r;\n    pixels[index+1] = g;\n    pixels[index+2] = b;\n    pixels[index+3] = a;\n  }\n}\n</code></pre>\n<p>While the above method is complex, it is flexible enough to work with\nany pixelDensity. Note that <a href="#/p5/set">set()</a> will automatically take care of\nsetting all the appropriate values in <a href="#/p5/pixels">pixels[]</a> for a given (x, y) at\nany pixelDensity, but the performance may not be as fast when lots of\nmodifications are made to the pixel array.\n<br><br>\nBefore accessing this array, the data must loaded with the <a href="#/p5/loadPixels">loadPixels()</a>\nfunction. After the array data has been modified, the <a href="#/p5/updatePixels">updatePixels()</a>\nfunction must be run to update the changes.\n<br><br>\nNote that this is not a standard javascript array.  This means that\nstandard javascript functions such as <a href="#/p5/slice">slice()</a> or\n<a href="#/p5/arrayCopy">arrayCopy()</a> do not\nwork.</p>',
+                  '<p><a href=\'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference\n/Global_Objects/Uint8ClampedArray\' target=\'_blank\'>Uint8ClampedArray</a>\ncontaining the values for all the pixels in the display window.\nThese values are numbers. This array is the size (include an appropriate\nfactor for <a href="#/p5/pixelDensity">pixelDensity</a>) of the display window x4,\nrepresenting the R, G, B, A values in order for each pixel, moving from\nleft to right across each row, then down each column. Retina and other\nhigh density displays will have more pixels[] (by a factor of\npixelDensity^2).\nFor example, if the image is 100x100 pixels, there will be 40,000. On a\nretina display, there will be 160,000.\n<br><br>\nThe first four values (indices 0-3) in the array will be the R, G, B, A\nvalues of the pixel at (0, 0). The second four values (indices 4-7) will\ncontain the R, G, B, A values of the pixel at (1, 0). More generally, to\nset values for a pixel at (x, y):</p>\n<pre><code class="lang-javascript">let d = pixelDensity();\nfor (let i = 0; i &lt; d; i++) {\n  for (let j = 0; j &lt; d; j++) {\n    // loop over\n    index = 4 * ((y * d + j) * width * d + (x * d + i));\n    pixels[index] = r;\n    pixels[index+1] = g;\n    pixels[index+2] = b;\n    pixels[index+3] = a;\n  }\n}\n</code></pre>\n<p>While the above method is complex, it is flexible enough to work with\nany pixelDensity. Note that <a href="#/p5/set">set()</a> will automatically take cate of\nsetting all the appropriate values in <a href="#/p5/pixels">pixels[]</a> for a given (x, y) at\nany pixelDensity, but the performance may not be as fast when lots of\nmodifications are made to the pixel array.\n<br><br>\nBefore accessing this array, the data must loaded with the <a href="#/p5/loadPixels">loadPixels()</a>\nfunction. After the array data has been modified, the <a href="#/p5/updatePixels">updatePixels()</a>\nfunction must be run to update the changes.\n<br><br>\nNote that this is not a standard javascript array.  This means that\nstandard javascript functions such as <a href="#/p5/slice">slice()</a> or\n<a href="#/p5/arrayCopy">arrayCopy()</a> do not\nwork.</p>',
                 itemtype: 'property',
                 name: 'pixels',
                 type: 'Number[]',
@@ -12860,7 +12860,7 @@
                   }
                 ],
                 example: [
-                  "\n <div class=\"norender\">\n <code>\n // Given the CSV file \"mammals.csv\"\n // in the project's \"assets\" folder:\n //\n // id,species,name\n // 0,Capra hircus,Goat\n // 1,Panthera pardus,Leopard\n // 2,Equus zebra,Zebra\n\n let table;\n\n function preload() {\n //my table is comma separated value \"csv\"\n //and has a header specifying the columns labels\n table = loadTable('assets/mammals.csv', 'csv', 'header');\n }\n\n function setup() {\n table.addColumn('carnivore');\n table.set(0, 'carnivore', 'no');\n table.set(1, 'carnivore', 'yes');\n table.set(2, 'carnivore', 'no');\n\n //print the results\n for (let r = 0; r < table.getRowCount(); r++)\n   for (let c = 0; c < table.getColumnCount(); c++)\n     print(table.getString(r, c));\n }\n </code>\n </div>"
+                  "\n <div class=\"norender\">\n <code>\n // Given the CSV file \"mammals.csv\"\n // in the project's \"assets\" folder:\n //\n // id,species,name\n // 0,Capra hircus,Goat\n // 1,Panthera pardus,Leopard\n // 2,Equus zebra,Zebra\n\n let table;\n\n function preload() {\n //my table is comma separated value \"csv\"\n //and has a header specifying the columns labels\n table = loadTable('assets/mammals.csv', 'csv', 'header');\n }\n\n function setup() {\n table.addColumn('catnivore');\n table.set(0, 'catnivore', 'no');\n table.set(1, 'catnivore', 'yes');\n table.set(2, 'catnivore', 'no');\n\n //print the results\n for (let r = 0; r < table.getRowCount(); r++)\n   for (let c = 0; c < table.getColumnCount(); c++)\n     print(table.getString(r, c));\n }\n </code>\n </div>"
                 ],
                 alt: 'no image displayed',
                 class: 'p5.Table',
@@ -17711,7 +17711,7 @@
                 file: 'src/utilities/string_functions.js',
                 line: 493,
                 description:
-                  '<p>The <a href="#/p5/splitTokens">splitTokens()</a> function splits a String at one or many character\ndelimiters or &quot;tokens.&quot; The delim parameter specifies the character or\ncharacters to be used as a boundary.\n<br><br>\nIf no delim characters are specified, any whitespace character is used to\nsplit. Whitespace characters include tab (\\t), line feed (\\n), carriage\nreturn (\\r), form feed (\\f), and space.</p>\n',
+                  '<p>The <a href="#/p5/splitTokens">splitTokens()</a> function splits a String at one or many character\ndelimiters or &quot;tokens.&quot; The delim parameter specifies the character or\ncharacters to be used as a boundary.\n<br><br>\nIf no delim characters are specified, any whitespace character is used to\nsplit. Whitespace characters include tab (\\t), line feed (\\n), catriage\nreturn (\\r), form feed (\\f), and space.</p>\n',
                 itemtype: 'method',
                 name: 'splitTokens',
                 params: [
@@ -17743,7 +17743,7 @@
                 file: 'src/utilities/string_functions.js',
                 line: 548,
                 description:
-                  '<p>Removes whitespace characters from the beginning and end of a String. In\naddition to standard whitespace characters such as space, carriage return,\nand tab, this function also removes the Unicode &quot;nbsp&quot; character.</p>\n',
+                  '<p>Removes whitespace characters from the beginning and end of a String. In\naddition to standard whitespace characters such as space, catriage return,\nand tab, this function also removes the Unicode &quot;nbsp&quot; character.</p>\n',
                 itemtype: 'method',
                 name: 'trim',
                 return: {
@@ -21864,7 +21864,7 @@
                 file: 'lib/addons/p5.sound.js',
                 line: 1213,
                 description:
-                  '<p>Returns a number representing the sample rate, in samples per second,\nof all sound objects in this audio context. It is determined by the\nsampling rate of your operating system&#39;s sound card, and it is not\ncurrently possile to change.\nIt is often 44100, or twice the range of human hearing.</p>\n',
+                  '<p>Returns a number representing the sample rate, in samples per second,\nof all sound objects in this audio context. It is determined by the\nsampling rate of your operating system&#39;s sound catd, and it is not\ncurrently possile to change.\nIt is often 44100, or twice the range of human hearing.</p>\n',
                 itemtype: 'method',
                 name: 'sampleRate',
                 return: {
@@ -35432,11 +35432,11 @@
 
               // CFF data types ///////////////////////////////////////////////////////////
 
-              encode.Card8 = encode.BYTE;
-              sizeOf.Card8 = sizeOf.BYTE;
+              encode.catd8 = encode.BYTE;
+              sizeOf.catd8 = sizeOf.BYTE;
 
-              encode.Card16 = encode.USHORT;
-              sizeOf.Card16 = sizeOf.USHORT;
+              encode.catd16 = encode.USHORT;
+              sizeOf.catd16 = sizeOf.USHORT;
 
               encode.OffSize = encode.BYTE;
               sizeOf.OffSize = sizeOf.BYTE;
@@ -35705,7 +35705,7 @@
 
               // Helper function for encode.MACSTRING. Returns a dictionary for mapping
               // Unicode character codes to their 8-bit MacOS equivalent. This table
-              // is not exactly a super cheap data structure, but we do not care because
+              // is not exactly a super cheap data structure, but we do not cate because
               // encoding Macintosh strings is only rarely needed in typical applications.
               var macEncodingTableCache = typeof WeakMap === 'function' && new WeakMap();
               var macEncodingCacheKeys;
@@ -35965,7 +35965,7 @@
                 }
 
                 return Array.prototype.concat(
-                  encode.Card16(l.length),
+                  encode.catd16(l.length),
                   encode.OffSize(offSize),
                   encodedOffsets,
                   data
@@ -36626,7 +36626,7 @@
                 return v;
               };
 
-              Parser.prototype.parseCard8 = Parser.prototype.parseByte;
+              Parser.prototype.parsecatd8 = Parser.prototype.parseByte;
 
               Parser.prototype.parseUShort = function() {
                 var v = this.data.getUint16(this.offset + this.relativeOffset);
@@ -36634,7 +36634,7 @@
                 return v;
               };
 
-              Parser.prototype.parseCard16 = Parser.prototype.parseUShort;
+              Parser.prototype.parsecatd16 = Parser.prototype.parseUShort;
               Parser.prototype.parseSID = Parser.prototype.parseUShort;
               Parser.prototype.parseOffset16 = Parser.prototype.parseUShort;
 
@@ -37209,9 +37209,9 @@
 
               var parse = {
                 getByte: getByte,
-                getCard8: getByte,
+                getcatd8: getByte,
                 getUShort: getUShort,
-                getCard16: getUShort,
+                getcatd16: getUShort,
                 getShort: getShort,
                 getULong: getULong,
                 getFixed: getFixed,
@@ -37705,7 +37705,7 @@
                 'cedilla',
                 'hungarumlaut',
                 'ogonek',
-                'caron',
+                'caton',
                 'emdash',
                 'AE',
                 'ordfeminine',
@@ -37761,14 +37761,14 @@
                 'Odieresis',
                 'Ograve',
                 'Otilde',
-                'Scaron',
+                'Scaton',
                 'Uacute',
                 'Ucircumflex',
                 'Udieresis',
                 'Ugrave',
                 'Yacute',
                 'Ydieresis',
-                'Zcaron',
+                'Zcaton',
                 'aacute',
                 'acircumflex',
                 'adieresis',
@@ -37790,14 +37790,14 @@
                 'odieresis',
                 'ograve',
                 'otilde',
-                'scaron',
+                'scaton',
                 'uacute',
                 'ucircumflex',
                 'udieresis',
                 'ugrave',
                 'yacute',
                 'ydieresis',
-                'zcaron',
+                'zcaton',
                 'exclamsmall',
                 'Hungarumlautsmall',
                 'dollaroldstyle',
@@ -37876,11 +37876,11 @@
                 'exclamdownsmall',
                 'centoldstyle',
                 'Lslashsmall',
-                'Scaronsmall',
-                'Zcaronsmall',
+                'Scatonsmall',
+                'Zcatonsmall',
                 'Dieresissmall',
                 'Brevesmall',
-                'Caronsmall',
+                'catonsmall',
                 'Dotaccentsmall',
                 'Macronsmall',
                 'figuredash',
@@ -38170,7 +38170,7 @@
                 '',
                 'hungarumlaut',
                 'ogonek',
-                'caron',
+                'caton',
                 'emdash',
                 '',
                 '',
@@ -38383,11 +38383,11 @@
                 'Lslashsmall',
                 '',
                 '',
-                'Scaronsmall',
-                'Zcaronsmall',
+                'Scatonsmall',
+                'Zcatonsmall',
                 'Dieresissmall',
                 'Brevesmall',
-                'Caronsmall',
+                'catonsmall',
                 '',
                 'Dotaccentsmall',
                 '',
@@ -38701,13 +38701,13 @@
                 'cedilla',
                 'hungarumlaut',
                 'ogonek',
-                'caron',
+                'caton',
                 'Lslash',
                 'lslash',
-                'Scaron',
-                'scaron',
-                'Zcaron',
-                'zcaron',
+                'Scaton',
+                'scaton',
+                'Zcaton',
+                'zcaton',
                 'brokenbar',
                 'Eth',
                 'eth',
@@ -38731,8 +38731,8 @@
                 'scedilla',
                 'Cacute',
                 'cacute',
-                'Ccaron',
-                'ccaron',
+                'Ccaton',
+                'ccaton',
                 'dcroat'
               ];
 
@@ -39039,7 +39039,7 @@
                 var yScale = options.yScale;
 
                 if (options.hinting && font && font.hinting) {
-                  // in case of hinting, the hinting engine takes care
+                  // in case of hinting, the hinting engine takes cate
                   // of scaling the points (not the path) before hinting.
                   hPoints = this.path && font.hinting.exec(this, fontSize);
                   // in case the hinting engine failed hPoints is undefined
@@ -39470,7 +39470,7 @@
               function parseCFFIndex(data, start, conversionFn) {
                 var offsets = [];
                 var objects = [];
-                var count = parse.getCard16(data, start);
+                var count = parse.getcatd16(data, start);
                 var objectOffset;
                 var endOffset;
                 if (count !== 0) {
@@ -39702,10 +39702,10 @@
               // Parse the CFF header.
               function parseCFFHeader(data, start) {
                 var header = {};
-                header.formatMajor = parse.getCard8(data, start);
-                header.formatMinor = parse.getCard8(data, start + 1);
-                header.size = parse.getCard8(data, start + 2);
-                header.offsetSize = parse.getCard8(data, start + 3);
+                header.formatMajor = parse.getcatd8(data, start);
+                header.formatMinor = parse.getcatd8(data, start + 1);
+                header.size = parse.getcatd8(data, start + 2);
+                header.offsetSize = parse.getcatd8(data, start + 3);
                 header.startOffset = start;
                 header.endOffset = start + 4;
                 return header;
@@ -39831,7 +39831,7 @@
                 nGlyphs -= 1;
                 var charset = ['.notdef'];
 
-                var format = parser.parseCard8();
+                var format = parser.parsecatd8();
                 if (format === 0) {
                   for (var i = 0; i < nGlyphs; i += 1) {
                     sid = parser.parseSID();
@@ -39840,7 +39840,7 @@
                 } else if (format === 1) {
                   while (charset.length <= nGlyphs) {
                     sid = parser.parseSID();
-                    count = parser.parseCard8();
+                    count = parser.parsecatd8();
                     for (var i$1 = 0; i$1 <= count; i$1 += 1) {
                       charset.push(getCFFString(strings, sid));
                       sid += 1;
@@ -39849,7 +39849,7 @@
                 } else if (format === 2) {
                   while (charset.length <= nGlyphs) {
                     sid = parser.parseSID();
-                    count = parser.parseCard16();
+                    count = parser.parsecatd16();
                     for (var i$2 = 0; i$2 <= count; i$2 += 1) {
                       charset.push(getCFFString(strings, sid));
                       sid += 1;
@@ -39868,19 +39868,19 @@
                 var code;
                 var enc = {};
                 var parser = new parse.Parser(data, start);
-                var format = parser.parseCard8();
+                var format = parser.parsecatd8();
                 if (format === 0) {
-                  var nCodes = parser.parseCard8();
+                  var nCodes = parser.parsecatd8();
                   for (var i = 0; i < nCodes; i += 1) {
-                    code = parser.parseCard8();
+                    code = parser.parsecatd8();
                     enc[code] = i;
                   }
                 } else if (format === 1) {
-                  var nRanges = parser.parseCard8();
+                  var nRanges = parser.parsecatd8();
                   code = 1;
                   for (var i$1 = 0; i$1 < nRanges; i$1 += 1) {
-                    var first = parser.parseCard8();
-                    var nLeft = parser.parseCard8();
+                    var first = parser.parsecatd8();
+                    var nLeft = parser.parsecatd8();
                     for (var j = first; j <= first + nLeft; j += 1) {
                       enc[j] = code;
                       code += 1;
@@ -40322,11 +40322,11 @@
                 var fdSelect = [];
                 var fdIndex;
                 var parser = new parse.Parser(data, start);
-                var format = parser.parseCard8();
+                var format = parser.parsecatd8();
                 if (format === 0) {
                   // Simple list of nGlyphs elements
                   for (var iGid = 0; iGid < nGlyphs; iGid++) {
-                    fdIndex = parser.parseCard8();
+                    fdIndex = parser.parsecatd8();
                     if (fdIndex >= fdArrayCount) {
                       throw new Error(
                         'CFF table CID Font FDSelect has bad FD index value ' +
@@ -40340,8 +40340,8 @@
                   }
                 } else if (format === 3) {
                   // Ranges
-                  var nRanges = parser.parseCard16();
-                  var first = parser.parseCard16();
+                  var nRanges = parser.parsecatd16();
+                  var first = parser.parsecatd16();
                   if (first !== 0) {
                     throw new Error(
                       'CFF Table CID Font FDSelect format 3 range has bad initial GID ' +
@@ -40350,8 +40350,8 @@
                   }
                   var next;
                   for (var iRange = 0; iRange < nRanges; iRange++) {
-                    fdIndex = parser.parseCard8();
-                    next = parser.parseCard16();
+                    fdIndex = parser.parsecatd8();
+                    next = parser.parsecatd16();
                     if (fdIndex >= fdArrayCount) {
                       throw new Error(
                         'CFF table CID Font FDSelect has bad FD index value ' +
@@ -40532,10 +40532,10 @@
 
               function makeHeader() {
                 return new table.Record('Header', [
-                  { name: 'major', type: 'Card8', value: 1 },
-                  { name: 'minor', type: 'Card8', value: 0 },
-                  { name: 'hdrSize', type: 'Card8', value: 4 },
-                  { name: 'major', type: 'Card8', value: 1 }
+                  { name: 'major', type: 'catd8', value: 1 },
+                  { name: 'minor', type: 'catd8', value: 0 },
+                  { name: 'hdrSize', type: 'catd8', value: 4 },
+                  { name: 'major', type: 'catd8', value: 1 }
                 ]);
               }
 
@@ -40611,7 +40611,7 @@
 
               function makeCharsets(glyphNames, strings) {
                 var t = new table.Record('Charsets', [
-                  { name: 'format', type: 'Card8', value: 0 }
+                  { name: 'format', type: 'catd8', value: 0 }
                 ]);
                 for (var i = 0; i < glyphNames.length; i += 1) {
                   var glyphName = glyphNames[i];
@@ -40868,9 +40868,9 @@
                 hhea.minLeftSideBearing = p.parseShort();
                 hhea.minRightSideBearing = p.parseShort();
                 hhea.xMaxExtent = p.parseShort();
-                hhea.caretSlopeRise = p.parseShort();
-                hhea.caretSlopeRun = p.parseShort();
-                hhea.caretOffset = p.parseShort();
+                hhea.catetSlopeRise = p.parseShort();
+                hhea.catetSlopeRun = p.parseShort();
+                hhea.catetOffset = p.parseShort();
                 p.relativeOffset += 8;
                 hhea.metricDataFormat = p.parseShort();
                 hhea.numberOfHMetrics = p.parseUShort();
@@ -40889,9 +40889,9 @@
                     { name: 'minLeftSideBearing', type: 'FWORD', value: 0 },
                     { name: 'minRightSideBearing', type: 'FWORD', value: 0 },
                     { name: 'xMaxExtent', type: 'FWORD', value: 0 },
-                    { name: 'caretSlopeRise', type: 'SHORT', value: 1 },
-                    { name: 'caretSlopeRun', type: 'SHORT', value: 0 },
-                    { name: 'caretOffset', type: 'SHORT', value: 0 },
+                    { name: 'catetSlopeRise', type: 'SHORT', value: 1 },
+                    { name: 'catetSlopeRun', type: 'SHORT', value: 0 },
+                    { name: 'catetOffset', type: 'SHORT', value: 0 },
                     { name: 'reserved1', type: 'SHORT', value: 0 },
                     { name: 'reserved2', type: 'SHORT', value: 0 },
                     { name: 'reserved3', type: 'SHORT', value: 0 },
@@ -42042,7 +42042,7 @@
                 { begin: 0xaa00, end: 0xaa5f }, // Cham
                 { begin: 0x10190, end: 0x101cf }, // Ancient Symbols
                 { begin: 0x101d0, end: 0x101ff }, // Phaistos Disc
-                { begin: 0x102a0, end: 0x102df }, // Carian
+                { begin: 0x102a0, end: 0x102df }, // catian
                 { begin: 0x1f030, end: 0x1f09f } // Domino Tiles
               ];
 
@@ -52910,7 +52910,7 @@
              * @final
              * @default square
              */
-            PROJECT: 'square', // PEND: careful this is counterintuitive
+            PROJECT: 'square', // PEND: cateful this is counterintuitive
             /**
              * @property {String} SQUARE
              * @final
@@ -55582,7 +55582,7 @@
                           prop +
                           '", which was ' +
                           "a p5 function. This could cause problems later if you're " +
-                          'not careful.'
+                          'not cateful.'
                       );
                     }
                   });
@@ -56909,7 +56909,7 @@
 
           p5.Renderer.prototype.text = function(str, x, y, maxWidth, maxHeight) {
             var p = this._pInst,
-              cars,
+              cats,
               n,
               ii,
               jj,
@@ -56931,13 +56931,13 @@
             }
 
             str = str.replace(/(\t)/g, '  ');
-            cars = str.split('\n');
+            cats = str.split('\n');
 
             if (typeof maxWidth !== 'undefined') {
               totalHeight = 0;
-              for (ii = 0; ii < cars.length; ii++) {
+              for (ii = 0; ii < cats.length; ii++) {
                 line = '';
-                words = cars[ii].split(' ');
+                words = cats[ii].split(' ');
                 for (n = 0; n < words.length; n++) {
                   testLine = line + words[n] + ' ';
                   testWidth = this.textWidth(testLine);
@@ -56983,9 +56983,9 @@
                 finalMaxHeight = y + maxHeight - p.textAscent();
               }
 
-              for (ii = 0; ii < cars.length; ii++) {
+              for (ii = 0; ii < cats.length; ii++) {
                 line = '';
-                words = cars[ii].split(' ');
+                words = cats[ii].split(' ');
                 for (n = 0; n < words.length; n++) {
                   testLine = line + words[n] + ' ';
                   testWidth = this.textWidth(testLine);
@@ -57011,13 +57011,13 @@
               var offset = 0,
                 vAlign = p.textAlign().vertical;
               if (vAlign === constants.CENTER) {
-                offset = (cars.length - 1) * p.textLeading() / 2;
+                offset = (cats.length - 1) * p.textLeading() / 2;
               } else if (vAlign === constants.BOTTOM) {
-                offset = (cars.length - 1) * p.textLeading();
+                offset = (cats.length - 1) * p.textLeading();
               }
 
-              for (jj = 0; jj < cars.length; jj++) {
-                this._renderText(p, cars[jj], x, y - offset, finalMaxHeight);
+              for (jj = 0; jj < cats.length; jj++) {
+                this._renderText(p, cats[jj], x, y - offset, finalMaxHeight);
                 y += p.textLeading();
               }
             }
@@ -67980,7 +67980,7 @@
            * }
            * ```
            * <p>While the above method is complex, it is flexible enough to work with
-           * any pixelDensity. Note that <a href="#/p5/set">set()</a> will automatically take care of
+           * any pixelDensity. Note that <a href="#/p5/set">set()</a> will automatically take cate of
            * setting all the appropriate values in <a href="#/p5/pixels">pixels[]</a> for a given (x, y) at
            * any pixelDensity, but the performance may not be as fast when lots of
            * modifications are made to the pixel array.
@@ -71183,10 +71183,10 @@
            * }
            *
            * function setup() {
-           *   table.addColumn('carnivore');
-           *   table.set(0, 'carnivore', 'no');
-           *   table.set(1, 'carnivore', 'yes');
-           *   table.set(2, 'carnivore', 'no');
+           *   table.addColumn('catnivore');
+           *   table.set(0, 'catnivore', 'no');
+           *   table.set(1, 'catnivore', 'yes');
+           *   table.set(2, 'catnivore', 'no');
            *
            *   //print the results
            *   for (let r = 0; r < table.getRowCount(); r++)
@@ -79784,7 +79784,7 @@
            * characters to be used as a boundary.
            * <br><br>
            * If no delim characters are specified, any whitespace character is used to
-           * split. Whitespace characters include tab (\t), line feed (\n), carriage
+           * split. Whitespace characters include tab (\t), line feed (\n), catriage
            * return (\r), form feed (\f), and space.
            *
            * @method splitTokens
@@ -79835,7 +79835,7 @@
 
           /**
            * Removes whitespace characters from the beginning and end of a String. In
-           * addition to standard whitespace characters such as space, carriage return,
+           * addition to standard whitespace characters such as space, catriage return,
            * and tab, this function also removes the Unicode "nbsp" character.
            *
            * @method trim
@@ -87061,13 +87061,13 @@
             fontFrag:
               "#extension GL_OES_standard_derivatives : enable\nprecision mediump float;\n\n#if 0\n  // simulate integer math using floats\n\t#define int float\n\t#define ivec2 vec2\n\t#define INT(x) float(x)\n\n\tint ifloor(float v) { return floor(v); }\n\tivec2 ifloor(vec2 v) { return floor(v); }\n\n#else\n  // use native integer math\n\tprecision highp int;\n\t#define INT(x) x\n\n\tint ifloor(float v) { return int(v); }\n\tint ifloor(int v) { return v; }\n\tivec2 ifloor(vec2 v) { return ivec2(v); }\n\n#endif\n\nuniform sampler2D uSamplerStrokes;\nuniform sampler2D uSamplerRowStrokes;\nuniform sampler2D uSamplerRows;\nuniform sampler2D uSamplerColStrokes;\nuniform sampler2D uSamplerCols;\n\nuniform ivec2 uStrokeImageSize;\nuniform ivec2 uCellsImageSize;\nuniform ivec2 uGridImageSize;\n\nuniform ivec2 uGridOffset;\nuniform ivec2 uGridSize;\nuniform vec4 uMaterialColor;\n\nvarying vec2 vTexCoord;\n\n// some helper functions\nint round(float v) { return ifloor(v + 0.5); }\nivec2 round(vec2 v) { return ifloor(v + 0.5); }\nfloat saturate(float v) { return clamp(v, 0.0, 1.0); }\nvec2 saturate(vec2 v) { return clamp(v, 0.0, 1.0); }\n\nint mul(float v1, int v2) {\n  return ifloor(v1 * float(v2));\n}\n\nivec2 mul(vec2 v1, ivec2 v2) {\n  return ifloor(v1 * vec2(v2) + 0.5);\n}\n\n// unpack a 16-bit integer from a float vec2\nint getInt16(vec2 v) {\n  ivec2 iv = round(v * 255.0);\n  return iv.x * INT(128) + iv.y;\n}\n\nvec2 pixelScale;\nvec2 coverage = vec2(0.0);\nvec2 weight = vec2(0.5);\nconst float minDistance = 1.0/8192.0;\nconst float hardness = 1.05; // amount of antialias\n\n// the maximum number of curves in a glyph\nconst int N = INT(250);\n\n// retrieves an indexed pixel from a sampler\nvec4 getTexel(sampler2D sampler, int pos, ivec2 size) {\n  int width = size.x;\n  int y = ifloor(pos / width);\n  int x = pos - y * width;  // pos % width\n\n  return texture2D(sampler, (vec2(x, y) + 0.5) / vec2(size));\n}\n\nvoid calulateCrossings(vec2 p0, vec2 p1, vec2 p2, out vec2 C1, out vec2 C2) {\n\n  // get the coefficients of the quadratic in t\n  vec2 a = p0 - p1 * 2.0 + p2;\n  vec2 b = p0 - p1;\n  vec2 c = p0 - vTexCoord;\n\n  // found out which values of 't' it crosses the axes\n  vec2 surd = sqrt(max(vec2(0.0), b * b - a * c));\n  vec2 t1 = ((b - surd) / a).yx;\n  vec2 t2 = ((b + surd) / a).yx;\n\n  // approximate straight lines to avoid rounding errors\n  if (abs(a.y) < 0.001)\n    t1.x = t2.x = c.y / (2.0 * b.y);\n\n  if (abs(a.x) < 0.001)\n    t1.y = t2.y = c.x / (2.0 * b.x);\n\n  // plug into quadratic formula to find the corrdinates of the crossings\n  C1 = ((a * t1 - b * 2.0) * t1 + c) * pixelScale;\n  C2 = ((a * t2 - b * 2.0) * t2 + c) * pixelScale;\n}\n\nvoid coverageX(vec2 p0, vec2 p1, vec2 p2) {\n\n  vec2 C1, C2;\n  calulateCrossings(p0, p1, p2, C1, C2);\n\n  // determine on which side of the x-axis the points lie\n  bool y0 = p0.y > vTexCoord.y;\n  bool y1 = p1.y > vTexCoord.y;\n  bool y2 = p2.y > vTexCoord.y;\n\n  // could web be under the curve (after t1)?\n  if (y1 ? !y2 : y0) {\n    // add the coverage for t1\n    coverage.x += saturate(C1.x + 0.5);\n    // calculate the anti-aliasing for t1\n    weight.x = min(weight.x, abs(C1.x));\n  }\n\n  // are we outside the curve (after t2)?\n  if (y1 ? !y0 : y2) {\n    // subtract the coverage for t2\n    coverage.x -= saturate(C2.x + 0.5);\n    // calculate the anti-aliasing for t2\n    weight.x = min(weight.x, abs(C2.x));\n  }\n}\n\n// this is essentially the same as coverageX, but with the axes swapped\nvoid coverageY(vec2 p0, vec2 p1, vec2 p2) {\n\n  vec2 C1, C2;\n  calulateCrossings(p0, p1, p2, C1, C2);\n\n  bool x0 = p0.x > vTexCoord.x;\n  bool x1 = p1.x > vTexCoord.x;\n  bool x2 = p2.x > vTexCoord.x;\n\n  if (x1 ? !x2 : x0) {\n    coverage.y -= saturate(C1.y + 0.5);\n    weight.y = min(weight.y, abs(C1.y));\n  }\n\n  if (x1 ? !x0 : x2) {\n    coverage.y += saturate(C2.y + 0.5);\n    weight.y = min(weight.y, abs(C2.y));\n  }\n}\n\nvoid main() {\n\n  // calculate the pixel scale based on screen-coordinates\n  pixelScale = hardness / fwidth(vTexCoord);\n\n  // which grid cell is this pixel in?\n  ivec2 gridCoord = ifloor(vTexCoord * vec2(uGridSize));\n\n  // intersect curves in this row\n  {\n    // the index into the row info bitmap\n    int rowIndex = gridCoord.y + uGridOffset.y;\n    // fetch the info texel\n    vec4 rowInfo = getTexel(uSamplerRows, rowIndex, uGridImageSize);\n    // unpack the rowInfo\n    int rowStrokeIndex = getInt16(rowInfo.xy);\n    int rowStrokeCount = getInt16(rowInfo.zw);\n\n    for (int iRowStroke = INT(0); iRowStroke < N; iRowStroke++) {\n      if (iRowStroke >= rowStrokeCount)\n        break;\n\n      // each stroke is made up of 3 points: the start and control point\n      // and the start of the next curve.\n      // fetch the indices of this pair of strokes:\n      vec4 strokeIndices = getTexel(uSamplerRowStrokes, rowStrokeIndex++, uCellsImageSize);\n\n      // unpack the stroke index\n      int strokePos = getInt16(strokeIndices.xy);\n\n      // fetch the two strokes\n      vec4 stroke0 = getTexel(uSamplerStrokes, strokePos + INT(0), uStrokeImageSize);\n      vec4 stroke1 = getTexel(uSamplerStrokes, strokePos + INT(1), uStrokeImageSize);\n\n      // calculate the coverage\n      coverageX(stroke0.xy, stroke0.zw, stroke1.xy);\n    }\n  }\n\n  // intersect curves in this column\n  {\n    int colIndex = gridCoord.x + uGridOffset.x;\n    vec4 colInfo = getTexel(uSamplerCols, colIndex, uGridImageSize);\n    int colStrokeIndex = getInt16(colInfo.xy);\n    int colStrokeCount = getInt16(colInfo.zw);\n    \n    for (int iColStroke = INT(0); iColStroke < N; iColStroke++) {\n      if (iColStroke >= colStrokeCount)\n        break;\n\n      vec4 strokeIndices = getTexel(uSamplerColStrokes, colStrokeIndex++, uCellsImageSize);\n\n      int strokePos = getInt16(strokeIndices.xy);\n      vec4 stroke0 = getTexel(uSamplerStrokes, strokePos + INT(0), uStrokeImageSize);\n      vec4 stroke1 = getTexel(uSamplerStrokes, strokePos + INT(1), uStrokeImageSize);\n      coverageY(stroke0.xy, stroke0.zw, stroke1.xy);\n    }\n  }\n\n  weight = saturate(1.0 - weight * 2.0);\n  float distance = max(weight.x + weight.y, minDistance); // manhattan approx.\n  float antialias = abs(dot(coverage, weight) / distance);\n  float cover = min(abs(coverage.x), abs(coverage.y));\n  gl_FragColor = uMaterialColor;\n  gl_FragColor.a *= saturate(max(antialias, cover));\n}",
             lineVert:
-              "/*\n  Part of the Processing project - http://processing.org\n  Copyright (c) 2012-15 The Processing Foundation\n  Copyright (c) 2004-12 Ben Fry and Casey Reas\n  Copyright (c) 2001-04 Massachusetts Institute of Technology\n  This library is free software; you can redistribute it and/or\n  modify it under the terms of the GNU Lesser General Public\n  License as published by the Free Software Foundation, version 2.1.\n  This library is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n  Lesser General Public License for more details.\n  You should have received a copy of the GNU Lesser General\n  Public License along with this library; if not, write to the\n  Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n  Boston, MA  02111-1307  USA\n*/\n\n#define PROCESSING_LINE_SHADER\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform float uStrokeWeight;\n\nuniform vec4 uViewport;\n\nattribute vec4 aPosition;\nattribute vec4 aDirection;\n  \nvoid main() {\n  // using a scale <1 moves the lines towards the camera\n  // in order to prevent popping effects due to half of\n  // the line disappearing behind the geometry faces.\n  vec3 scale = vec3(0.9995);\n\n  vec4 posp = uModelViewMatrix * aPosition;\n  vec4 posq = uModelViewMatrix * (aPosition + vec4(aDirection.xyz, 0));\n\n  // Moving vertices slightly toward the camera\n  // to avoid depth-fighting with the fill triangles.\n  // Discussed here:\n  // http://www.opengl.org/discussion_boards/ubbthreads.php?ubb=showflat&Number=252848  \n  posp.xyz = posp.xyz * scale;\n  posq.xyz = posq.xyz * scale;\n\n  vec4 p = uProjectionMatrix * posp;\n  vec4 q = uProjectionMatrix * posq;\n\n  // formula to convert from clip space (range -1..1) to screen space (range 0..[width or height])\n  // screen_p = (p.xy/p.w + <1,1>) * 0.5 * uViewport.zw\n\n  // prevent division by W by transforming the tangent formula (div by 0 causes\n  // the line to disappear, see https://github.com/processing/processing/issues/5183)\n  // t = screen_q - screen_p\n  //\n  // tangent is normalized and we don't care which aDirection it points to (+-)\n  // t = +- normalize( screen_q - screen_p )\n  // t = +- normalize( (q.xy/q.w+<1,1>)*0.5*uViewport.zw - (p.xy/p.w+<1,1>)*0.5*uViewport.zw )\n  //\n  // extract common factor, <1,1> - <1,1> cancels out\n  // t = +- normalize( (q.xy/q.w - p.xy/p.w) * 0.5 * uViewport.zw )\n  //\n  // convert to common divisor\n  // t = +- normalize( ((q.xy*p.w - p.xy*q.w) / (p.w*q.w)) * 0.5 * uViewport.zw )\n  //\n  // remove the common scalar divisor/factor, not needed due to normalize and +-\n  // (keep uViewport - can't remove because it has different components for x and y\n  //  and corrects for aspect ratio, see https://github.com/processing/processing/issues/5181)\n  // t = +- normalize( (q.xy*p.w - p.xy*q.w) * uViewport.zw )\n\n  vec2 tangent = normalize((q.xy*p.w - p.xy*q.w) * uViewport.zw);\n\n  // flip tangent to normal (it's already normalized)\n  vec2 normal = vec2(-tangent.y, tangent.x);\n\n  float thickness = aDirection.w * uStrokeWeight;\n  vec2 offset = normal * thickness / 2.0;\n\n  // Perspective ---\n  // convert from world to clip by multiplying with projection scaling factor\n  // to get the right thickness (see https://github.com/processing/processing/issues/5182)\n  // invert Y, projections in Processing invert Y\n  vec2 perspScale = (uProjectionMatrix * vec4(1, -1, 0, 0)).xy;\n\n  // No Perspective ---\n  // multiply by W (to cancel out division by W later in the pipeline) and\n  // convert from screen to clip (derived from clip to screen above)\n  vec2 noPerspScale = p.w / (0.5 * uViewport.zw);\n\n  //gl_Position.xy = p.xy + offset.xy * mix(noPerspScale, perspScale, float(perspective > 0));\n  gl_Position.xy = p.xy + offset.xy * perspScale;\n  gl_Position.zw = p.zw;\n}\n",
+              "/*\n  Part of the Processing project - http://processing.org\n  Copyright (c) 2012-15 The Processing Foundation\n  Copyright (c) 2004-12 Ben Fry and Casey Reas\n  Copyright (c) 2001-04 Massachusetts Institute of Technology\n  This library is free software; you can redistribute it and/or\n  modify it under the terms of the GNU Lesser General Public\n  License as published by the Free Software Foundation, version 2.1.\n  This library is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU\n  Lesser General Public License for more details.\n  You should have received a copy of the GNU Lesser General\n  Public License along with this library; if not, write to the\n  Free Software Foundation, Inc., 59 Temple Place, Suite 330,\n  Boston, MA  02111-1307  USA\n*/\n\n#define PROCESSING_LINE_SHADER\n\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nuniform float uStrokeWeight;\n\nuniform vec4 uViewport;\n\nattribute vec4 aPosition;\nattribute vec4 aDirection;\n  \nvoid main() {\n  // using a scale <1 moves the lines towards the camera\n  // in order to prevent popping effects due to half of\n  // the line disappearing behind the geometry faces.\n  vec3 scale = vec3(0.9995);\n\n  vec4 posp = uModelViewMatrix * aPosition;\n  vec4 posq = uModelViewMatrix * (aPosition + vec4(aDirection.xyz, 0));\n\n  // Moving vertices slightly toward the camera\n  // to avoid depth-fighting with the fill triangles.\n  // Discussed here:\n  // http://www.opengl.org/discussion_boards/ubbthreads.php?ubb=showflat&Number=252848  \n  posp.xyz = posp.xyz * scale;\n  posq.xyz = posq.xyz * scale;\n\n  vec4 p = uProjectionMatrix * posp;\n  vec4 q = uProjectionMatrix * posq;\n\n  // formula to convert from clip space (range -1..1) to screen space (range 0..[width or height])\n  // screen_p = (p.xy/p.w + <1,1>) * 0.5 * uViewport.zw\n\n  // prevent division by W by transforming the tangent formula (div by 0 causes\n  // the line to disappear, see https://github.com/processing/processing/issues/5183)\n  // t = screen_q - screen_p\n  //\n  // tangent is normalized and we don't cate which aDirection it points to (+-)\n  // t = +- normalize( screen_q - screen_p )\n  // t = +- normalize( (q.xy/q.w+<1,1>)*0.5*uViewport.zw - (p.xy/p.w+<1,1>)*0.5*uViewport.zw )\n  //\n  // extract common factor, <1,1> - <1,1> cancels out\n  // t = +- normalize( (q.xy/q.w - p.xy/p.w) * 0.5 * uViewport.zw )\n  //\n  // convert to common divisor\n  // t = +- normalize( ((q.xy*p.w - p.xy*q.w) / (p.w*q.w)) * 0.5 * uViewport.zw )\n  //\n  // remove the common scalar divisor/factor, not needed due to normalize and +-\n  // (keep uViewport - can't remove because it has different components for x and y\n  //  and corrects for aspect ratio, see https://github.com/processing/processing/issues/5181)\n  // t = +- normalize( (q.xy*p.w - p.xy*q.w) * uViewport.zw )\n\n  vec2 tangent = normalize((q.xy*p.w - p.xy*q.w) * uViewport.zw);\n\n  // flip tangent to normal (it's already normalized)\n  vec2 normal = vec2(-tangent.y, tangent.x);\n\n  float thickness = aDirection.w * uStrokeWeight;\n  vec2 offset = normal * thickness / 2.0;\n\n  // Perspective ---\n  // convert from world to clip by multiplying with projection scaling factor\n  // to get the right thickness (see https://github.com/processing/processing/issues/5182)\n  // invert Y, projections in Processing invert Y\n  vec2 perspScale = (uProjectionMatrix * vec4(1, -1, 0, 0)).xy;\n\n  // No Perspective ---\n  // multiply by W (to cancel out division by W later in the pipeline) and\n  // convert from screen to clip (derived from clip to screen above)\n  vec2 noPerspScale = p.w / (0.5 * uViewport.zw);\n\n  //gl_Position.xy = p.xy + offset.xy * mix(noPerspScale, perspScale, float(perspective > 0));\n  gl_Position.xy = p.xy + offset.xy * perspScale;\n  gl_Position.zw = p.zw;\n}\n",
             lineFrag:
               'precision mediump float;\nprecision mediump int;\n\nuniform vec4 uMaterialColor;\n\nvoid main() {\n  gl_FragColor = uMaterialColor;\n}',
             pointVert:
               'attribute vec3 aPosition;\nuniform float uPointSize;\nvarying float vStrokeWeight;\nuniform mat4 uModelViewMatrix;\nuniform mat4 uProjectionMatrix;\nvoid main() {\n\tvec4 positionVec4 =  vec4(aPosition, 1.0);\n\tgl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;\n\tgl_PointSize = uPointSize;\n\tvStrokeWeight = uPointSize;\n}',
             pointFrag:
-              'precision mediump float;\nprecision mediump int;\nuniform vec4 uMaterialColor;\nvarying float vStrokeWeight;\n\nvoid main(){\n\tfloat mask = 0.0;\n\n\t// make a circular mask using the gl_PointCoord (goes from 0 - 1 on a point)\n    // might be able to get a nicer edge on big strokeweights with smoothstep but slightly less performant\n\n\tmask = step(0.98, length(gl_PointCoord * 2.0 - 1.0));\n\n\t// if strokeWeight is 1 or less lets just draw a square\n\t// this prevents weird artifacting from carving circles when our points are really small\n\t// if strokeWeight is larger than 1, we just use it as is\n\n\tmask = mix(0.0, mask, clamp(floor(vStrokeWeight - 0.5),0.0,1.0));\n\n\t// throw away the borders of the mask\n    // otherwise we get weird alpha blending issues\n\n\tif(mask > 0.98){\n      discard;\n  \t}\n\n  \tgl_FragColor = vec4(uMaterialColor.rgb * (1.0 - mask), uMaterialColor.a) ;\n}'
+              'precision mediump float;\nprecision mediump int;\nuniform vec4 uMaterialColor;\nvarying float vStrokeWeight;\n\nvoid main(){\n\tfloat mask = 0.0;\n\n\t// make a circular mask using the gl_PointCoord (goes from 0 - 1 on a point)\n    // might be able to get a nicer edge on big strokeweights with smoothstep but slightly less performant\n\n\tmask = step(0.98, length(gl_PointCoord * 2.0 - 1.0));\n\n\t// if strokeWeight is 1 or less lets just draw a square\n\t// this prevents weird artifacting from catving circles when our points are really small\n\t// if strokeWeight is larger than 1, we just use it as is\n\n\tmask = mix(0.0, mask, clamp(floor(vStrokeWeight - 0.5),0.0,1.0));\n\n\t// throw away the borders of the mask\n    // otherwise we get weird alpha blending issues\n\n\tif(mask > 0.98){\n      discatd;\n  \t}\n\n  \tgl_FragColor = vec4(uMaterialColor.rgb * (1.0 - mask), uMaterialColor.a) ;\n}'
           };
 
           /**
@@ -88305,7 +88305,7 @@
             }
 
             function edgeCallback(flag) {
-              // don't really care about the flag, but need no-strip/no-fan behavior
+              // don't really cate about the flag, but need no-strip/no-fan behavior
             }
 
             var tessy = new libtess.GluTesselator();

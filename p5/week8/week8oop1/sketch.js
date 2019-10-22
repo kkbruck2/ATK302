@@ -1,28 +1,28 @@
-var myCar1;
-var myCar2; //declare it
+var mycat1;
+var mycat2; //declare it
 
 
 function setup() {
   // put setup code here
   createCanvas(800, 800);
-  myCar1 = new Car();
-  myCar2 = new Car();
+  mycat1 = new cat();
+  mycat2 = new cat();
 
 }
 
 function draw() {
   background(100);
 
-  myCar1.display();
-  myCar1.drive();
+  mycat1.display();
+  mycat1.drive();
 
-  myCar2.display();
-  myCar2.drive();
+  mycat2.display();
+  mycat2.drive();
 
 
 }
 
-function Car() {
+function cat() {
   //attibutes
   this.x = random(width);
   this.y = random(height);

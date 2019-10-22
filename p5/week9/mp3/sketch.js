@@ -2,18 +2,31 @@ var cats = [];
 var frogPos;
 var myState = 0;
 var timer = 0;
-var yoda, yodaLeft, yodaRight ;
+var leftF, rightF, leftB, rightB, head ;
+var mice;
+var mice = [];
+
 
 function setup() {
 
   createCanvas(800, 800);
 
-  yodaLeft = loadImage('assets/yodaLeft.gif');
-  yodaRight = loadImage('assets/yodaRight.gif');
-  yoda = yodaLeft;
+  leftF = loadImage('assets/leftFront.png');
+  rightF = loadImage('assets/rightFront.png');
+  leftB = loadImage('assets/leftBack.png');
+  rightF = loadImage('assets/rightBack.png');
+  head = loadImage('assets/head.png')
+
+
+  mice = loadImage('assets/mice1.png');
+  mice[0] = loadImage('assets/mice1.png');
+  mice[1] = loadImage('assets/mice2.png');
+  mice[2] = loadImage('assets/mice3.png');
+  mice[3] = loadImage('assets/mice4.png');
+
   //--------------------------Spawn cats
   for (var i = 0; i < 5; i++) {
-    cats.push(new cat());
+    mice.push(new mice());
   }
   //---------------------------
 
@@ -89,14 +102,30 @@ function cat() {
   this.r = random(255);
   this.g = random(255);
   this.b = random(255);
-
+  this.miceNum = 0;
+  this.timer = 0;
 
   //------------------------------------------------------- methods
   this.display = function() {
-    fill(this.r, this.g, this.b);
-    rect(this.pos.x, this.pos.y, 100, 50);
-    ellipse(this.pos.x - 45, this.pos.y + 25, 50, 50)
-    ellipse(this.pos.x + 45, this.pos.y + 25, 50, 50)
+    // fill(this.r, this.g, this.b);
+    // rect(this.pos.x, this.pos.y, 100, 50);
+    // ellipse(this.pos.x - 45, this.pos.y + 25, 50, 50);
+    // ellipse(this.pos.x + 45, this.pos.y + 25, 50, 50);
+    //image(mice, this.pos.x, this.pos.y,);
+
+    image(mices[this.miceNum], this.pos.x, this.pos.y, 100, 100,);
+    this.timer++;
+
+    if (this.timer > 20) {
+    this.miceNum = this.miceNum + 1;
+    this.timer = 0;
+    }
+
+
+    //don't go past
+    if (this.miceNum > mices.length - 1) {
+      this.miceNum = 0;
+    }
   }
 
   this.drive = function() {
@@ -148,8 +177,10 @@ function game() {
     myState = 2;
     timer = 0;
   }
-  // draw the frog
-  fill('green');
+  // draw the cat
+  fill(80);
+  ellipse(300, 300, 72, 214);
+
   // ellipse(frogPos.x, frogPos.y, 60, 60);
   image(yoda, frogPos.x, frogPos.y);
   checkForKeys();

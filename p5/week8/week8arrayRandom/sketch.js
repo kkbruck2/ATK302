@@ -1,4 +1,4 @@
-var bands = ['Foreigner', 'Boston', 'Cars', 'ACDC', 'Van Halen', 'Styx', 'Kansas', 'ELO', 'REO Speedwagon', 'Cheap Trick', 'Heart'];
+var bands = ['Foreigner', 'Boston', 'cats', 'ACDC', 'Van Halen', 'Styx', 'Kansas', 'ELO', 'REO Speedwagon', 'Cheap Trick', 'Heart'];
 var aRandomBand = '';
 
 function setup() {

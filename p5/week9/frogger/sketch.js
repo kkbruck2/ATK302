@@ -1,4 +1,4 @@
-var cars = [];
+var cats = [];
 var frogPos;
 var myState = 0;
 var timer = 0;
@@ -6,9 +6,9 @@ var timer = 0;
 function setup() {
 
   createCanvas(800, 800);
-  //--------------------------Spawn cars
+  //--------------------------Spawn cats
   for (var i = 0; i < 5; i++) {
-    cars.push(new Car());
+    cats.push(new cat());
   }
   //---------------------------
 
@@ -75,8 +75,8 @@ function mouseReleased() {
       break;
   }
 }
-//-----------------------------car class!!
-function Car() {
+//-----------------------------cat class!!
+function cat() {
   //--------------------------------------------------------attributes
   this.pos = createVector(100, 100);
   this.vel = createVector(random(-5, 5), random(-5, 5));
@@ -104,7 +104,7 @@ function Car() {
   }
 
 }
-//--------------------------------------------------- end of Car class
+//--------------------------------------------------- end of cat class
 
 function checkForKeys() {
   if (keyIsDown(LEFT_ARROW)) frogPos.x = frogPos.x - 5;
@@ -115,10 +115,10 @@ function checkForKeys() {
 }
 
 function resetTheGame() {
-  cars = [];
-  //--------------------------Spawn cars
+  cats = [];
+  //--------------------------Spawn cats
   for (var i = 0; i < 5; i++) {
-    cars.push(new Car());
+    cats.push(new cat());
   }
   timer = 0;
   //--------------------------------
@@ -126,15 +126,15 @@ function resetTheGame() {
 //------------------------------------------------------ game
 function game() {
   background(100);
-  for (var i = 0; i < cars.length; i++) {
-    cars[i].display();
-    cars[i].drive();
-    if (cars[i].pos.dist(frogPos) < 50) {
-      cars.splice(i, 1);
+  for (var i = 0; i < cats.length; i++) {
+    cats[i].display();
+    cats[i].drive();
+    if (cats[i].pos.dist(frogPos) < 50) {
+      cats.splice(i, 1);
     }
   }
 
-  if (cars.length == 0) {
+  if (cats.length == 0) {
     myState = 2;
     timer = 0;
   }

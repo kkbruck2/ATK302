@@ -1213,7 +1213,7 @@ helpers = function () {
   /**
    * Returns a number representing the sample rate, in samples per second,
    * of all sound objects in this audio context. It is determined by the
-   * sampling rate of your operating system's sound card, and it is not
+   * sampling rate of your operating system's sound catd, and it is not
    * currently possile to change.
    * It is often 44100, or twice the range of human hearing.
    *
@@ -5242,10 +5242,10 @@ signal = function () {
    *  @example
    *  <div><code>
    *  function setup() {
-   *    carrier = new p5.Oscillator('sine');
-   *    carrier.amp(1); // set amplitude
-   *    carrier.freq(220); // set frequency
-   *    carrier.start(); // start oscillating
+   *    catrier = new p5.Oscillator('sine');
+   *    catrier.amp(1); // set amplitude
+   *    catrier.freq(220); // set frequency
+   *    catrier.start(); // start oscillating
    *
    *    modulator = new p5.Oscillator('sawtooth');
    *    modulator.disconnect();
@@ -5256,7 +5256,7 @@ signal = function () {
    *    // Modulator's default amplitude range is -1 to 1.
    *    // Multiply it by -200, so the range is -200 to 200
    *    // then add 220 so the range is 20 to 420
-   *    carrier.freq( modulator.mult(-200).add(220) );
+   *    catrier.freq( modulator.mult(-200).add(220) );
    *  }
    *  </code></div>
    */

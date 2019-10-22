@@ -1,7 +1,7 @@
 var bands = [];
 bands[0] = 'Foreigner';
 bands[1] = 'Boston'
-bands[2] = 'Cars'
+bands[2] = 'cats'
 bands[3] = 'ACDC'
 bands[4] = 'Van Halen'
 bands[5] = 'Styx'

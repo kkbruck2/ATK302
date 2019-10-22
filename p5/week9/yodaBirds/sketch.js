@@ -111,7 +111,7 @@ function Car() {
 
     image(birds[this.birdNum], this.pos.x, this.pos.y, 100, 100,);
     this.timer++;
-    
+
     if (this.timer > 20) {
     this.birdNum = this.birdNum + 1;
     this.timer = 0;

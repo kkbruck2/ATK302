@@ -8,7 +8,7 @@ var cat;
 
 
 function preload() {
-  song1 = loadSound('assets/Carry On Wayward Son_01.mp3');
+  song1 = loadSound('assets/catry On Wayward Son_01.mp3');
   song2 = loadSound('assets/Fire And Rain_01.mp3');
   song3 = loadSound('assets/Oh Very Young_01.mp3');
   song4 = loadSound('assets/Born To Run_01.mp3');

@@ -1,4 +1,4 @@
-var cars = [];
+var cats = [];
 var frogPos;
 
 //---------------------
@@ -6,7 +6,7 @@ function setup() {
   createCanvas(800, 800);
 
   for (var i = 0; i < 40; i++) {
-    cars.push(new Car())
+    cats.push(new cat())
   }
   frogPos = createVector(width / 2, height - 80);
   
@@ -14,11 +14,11 @@ function setup() {
 //-------------------------
 function draw() {
   background(100);
-  for (var i = 0; i < cars.length; i++) {
-    cars[i].display();
-    cars[i].drive();
-    if (cars[i].pos.dist(frogPos) < 50) {
-      cars.splice(i, 1);
+  for (var i = 0; i < cats.length; i++) {
+    cats[i].display();
+    cats[i].drive();
+    if (cats[i].pos.dist(frogPos) < 50) {
+      cats.splice(i, 1);
     }
 
   }
@@ -30,7 +30,7 @@ function draw() {
 }
 
 //--------------------
-function Car() {
+function cat() {
   //attributes
   this.pos = createVector(100, 100);
   this.vel = createVector(random(-5, 5), random(-5, 5));
