@@ -58,6 +58,7 @@ function setup() {
 
 
   grid = loadImage('assets/grid.png');
+  bkgMusic.play();
 
 
 
