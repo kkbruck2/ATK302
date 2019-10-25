@@ -9,7 +9,7 @@ function draw() {
 background(255);  
 text("opener", 100, 100);
 
-text("10 steps of the replication ", 100, 100);
+text("10 steps of the replicarion ", 100, 100);
 
 text("HIV Structure", 100, 100);
 

@@ -1,4 +1,4 @@
-var cats = [];
+var cars = [];
 var frogPos;
 var myState = 0;
 var timer = 0;
@@ -11,9 +11,9 @@ function setup() {
   yodaLeft = loadImage('assets/yodaLeft.gif');
   yodaRight = loadImage('assets/yodaRight.gif');
   yoda = yodaLeft;
-  //--------------------------Spawn cats
+  //--------------------------Spawn cars
   for (var i = 0; i < 5; i++) {
-    cats.push(new cat());
+    cars.push(new car());
   }
   //---------------------------
 
@@ -81,8 +81,8 @@ function mouseReleased() {
       break;
   }
 }
-//-----------------------------cat class!!
-function cat() {
+//-----------------------------car class!!
+function car() {
   //--------------------------------------------------------attributes
   this.pos = createVector(100, 100);
   this.vel = createVector(random(-5, 5), random(-5, 5));
@@ -110,7 +110,7 @@ function cat() {
   }
 
 }
-//--------------------------------------------------- end of cat class
+//--------------------------------------------------- end of car class
 function keyPressed() {
   if (keyCode === LEFT_ARROW) yoda = yodaLeft;
   if (keyCode === RIGHT_ARROW) yoda = yodaRight;
@@ -125,10 +125,10 @@ function checkForKeys() {
 }
 
 function resetTheGame() {
-  cats = [];
-  //--------------------------Spawn cats
+  cars = [];
+  //--------------------------Spawn cars
   for (var i = 0; i < 5; i++) {
-    cats.push(new cat());
+    cars.push(new car());
   }
   timer = 0;
   //--------------------------------
@@ -136,15 +136,15 @@ function resetTheGame() {
 //------------------------------------------------------ game
 function game() {
   background(100);
-  for (var i = 0; i < cats.length; i++) {
-    cats[i].display();
-    cats[i].drive();
-    if (cats[i].pos.dist(frogPos) < 50) {
-      cats.splice(i, 1);
+  for (var i = 0; i < cars.length; i++) {
+    cars[i].display();
+    cars[i].drive();
+    if (cars[i].pos.dist(frogPos) < 50) {
+      cars.splice(i, 1);
     }
   }
 
-  if (cats.length == 0) {
+  if (cars.length == 0) {
     myState = 2;
     timer = 0;
   }

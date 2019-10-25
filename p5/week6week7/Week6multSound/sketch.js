@@ -4,11 +4,11 @@ var rats;
 var bruce;
 var kansas;
 var james;
-var cat;
+var car;
 
 
 function preload() {
-  song1 = loadSound('assets/catry On Wayward Son_01.mp3');
+  song1 = loadSound('assets/carry On Wayward Son_01.mp3');
   song2 = loadSound('assets/Fire And Rain_01.mp3');
   song3 = loadSound('assets/Oh Very Young_01.mp3');
   song4 = loadSound('assets/Born To Run_01.mp3');
@@ -17,7 +17,7 @@ function preload() {
   bruce = loadImage('assets/BruceSpringsteen.jpg');
   kansas = loadImage('assets/kansas.jpg');
   james = loadImage('assets/jamesTaylor.jpg');
-  cat = loadImage('assets/CatStevens.jpg');
+  car = loadImage('assets/carStevens.jpg');
 
 
   // set each song to loop and then immediately pause it so it doesn't play
@@ -69,7 +69,7 @@ function draw() {
       break;
 
     case 5:
-    image(cat, 0, 0);
+    image(car, 0, 0);
       break;
 
     case 6:
