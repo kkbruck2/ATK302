@@ -80,6 +80,7 @@ function setup() {
 //-------------------------------------------------------------draw
 function draw() {
   image(myfloor, width / 2, height / 2);
+
   textFont(fontDiner);
   switch (myState) {
 
