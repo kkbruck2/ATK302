@@ -17,7 +17,7 @@ function preload() {
   bruce = loadImage('assets/BruceSpringsteen.jpg');
   kansas = loadImage('assets/kansas.jpg');
   james = loadImage('assets/jamesTaylor.jpg');
-  car = loadImage('assets/carStevens.jpg');
+  car = loadImage('assets/catStevens.jpg');
 
 
   // set each song to loop and then immediately pause it so it doesn't play
@@ -28,6 +28,10 @@ function preload() {
   song2.stop();
   song3.loop();
   song3.stop();
+  song4.loop();
+  song4.stop();
+  song5.loop();
+  song5.stop();
 
 }
 //------------------------------------end preload

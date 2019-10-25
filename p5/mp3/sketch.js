@@ -1,6 +1,8 @@
+var fontDiner
 var grid;
 var myfloor;
 var angle = 0;
+var bkgMusic
 
 var catPos;
 var myState = 0;
@@ -9,15 +11,14 @@ var leftF, rightF, leftB, rightB, head;
 var mice = [];
 var pieces = [];
 var stomachX = 72;
-var stomachY = 200 ;
+var stomachY = 200;
+var start;
+var win;
+var lose;
+var winSound;
+var loseSound;
 
-//-----------------------------------------------------------setup
-function setup() {
-
-  createCanvas(1080, 720);
-  angleMode(DEGREES);
-  grid = loadImage('assets/grid.png');
-
+function preload() {
   leftF = loadImage('assets/leftFront.png');
   rightF = loadImage('assets/rightFront.png');
   leftB = loadImage('assets/leftBack.png');
@@ -26,16 +27,44 @@ function setup() {
   tail = loadImage('assets/tail.png')
   grid = loadImage('assets/grid.png');
   myfloor = loadImage('assets/woodFloor.jpg');
-
+  start = loadImage('assets/start.png');
+  win = loadImage('assets/win.png');
+  lose = loadImage('assets/lose.png')
   mice[0] = loadImage('assets/mice1.png');
   mice[1] = loadImage('assets/mice2.png');
   mice[2] = loadImage('assets/mice3.png');
   mice[3] = loadImage('assets/mice4.png');
   mice[4] = loadImage('assets/mice3.png');
   mice[5] = loadImage('assets/mice2.png');
+  bkgMusic = loadSound('assets/456797__anechoix__jazz-music-loop.mp3');
+  winSound = loadSound('assets/396174__funwithsound__success-triumph-resolution-sound-effect_01.mp3')
+  loseSound = loadSound('assets/174427__badly99__domino-sound-effect_01.mp3')
+
+  bkgMusic.loop();
+  bkgMusic.stop();
+  winSound.play();
+  winSound.stop();
+  loseSound.play();
+  loseSound.stop();
+
+
+}
+//-----------------------------------------------------------setup
+function setup() {
+
+  createCanvas(1080, 720);
+  angleMode(DEGREES);
+  fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf')
+
+
+  grid = loadImage('assets/grid.png');
+
+
+
+
 
   //--------------------------Spawn cars
-  for (var i = 0; i < 20; i++) {
+  for (var i = 0; i < 10; i++) {
     pieces.push(new Piece());
   }
   //---------------------------
@@ -50,37 +79,61 @@ function setup() {
 //-------------------------------------------------------------draw
 function draw() {
   image(myfloor, width / 2, height / 2);
+  textFont(fontDiner);
   switch (myState) {
 
     case 0:
+      bkgMusic.play();
+      myState = 1;
+    case 1:
       fill(0);
-      textSize(48);
+      textSize(80);
       textAlign(CENTER);
-      text("Welcome to my game!", width / 2, height / 2);
+      text("Let's Hunt Mice!", width / 2, 150);
+      image(start, width / 2, height / 2);
+      winSound.stop();
+      loseSound.stop();
+
       break;
 
-    case 1:
+    case 2:
       game();
       timer++;
       if (timer > 1000) {
-        myState = 3;
+        myState = 5;
         timer = 0;
       } // the game state
       break;
 
-    case 2: // the win state
-      fill(0);
-      textSize(48);
-      textAlign(CENTER);
-      text("YOU WIN!", width / 2, height / 2);
+    case 3:
+      winSound.play();
+      bkgMusic.stop();
+      myState = 4;
       break;
 
-    case 3: // the lose state
+    case 4: // the win state
       fill(0);
       textSize(48);
       textAlign(CENTER);
-      text("YOU LOSE!", width / 2, height / 2);
+      text("Hee..Hee! WE WON!", width / 2, 150);
+      image(win, width / 2, height / 2);
+
       break;
+
+    case 5:
+      bkgMusic.stop();
+      loseSound.play();
+      myState = 6;
+      break;
+
+    case 6: // the lose state
+      fill(0);
+      textSize(48);
+      textAlign(CENTER);
+      text("uh...oh", width / 2, 250);
+      image(lose, width / 2, 450);
+      break;
+
 
   }
   //cat(catPos.x, catPos.y);
@@ -90,14 +143,14 @@ function draw() {
 //mouseReleased
 function mouseReleased() {
   switch (myState) {
-    case 0:
-      myState = 1;
+    case 1:
+      myState = 2;
       break;
-    case 2:
+    case 4:
       resetTheGame();
       myState = 0;
       break;
-    case 3:
+    case 6:
       resetTheGame();
       myState = 0;
       break;
@@ -118,8 +171,6 @@ function Piece() {
   //------------------------------------------------------- methods
   this.display = function() {
     image(mice[this.miceNum], this.pos.x, this.pos.y);
-    fill('red');
-    ellipse(this.pos.x, this.pos.y, 25, 25);
     this.timer++;
 
     if (this.timer > 20) {
@@ -167,7 +218,7 @@ function keyPressed() {
 }
 
 function checkForKeys() {
-  if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
+  if (keyIsDown(UP_ARROW )) catPos.y = catPos.y - 5;
   if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
   if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
   if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
@@ -198,7 +249,7 @@ function game() {
   }
 
   if (pieces.length == 0) {
-    myState = 2;
+    myState = 3;
     timer = 0;
   }
   push();
@@ -220,7 +271,7 @@ function game() {
 //--------------------------------------------------------------cat function
 function cat() {
   push();
-  translate(-250, -200);
+  translate(-250, -210);
   stroke(0);
   fill(95);
   image(leftB, 255, 335);
@@ -230,5 +281,6 @@ function cat() {
   image(rightF, 255, 190);
   image(tail, 325, 450);
   image(head, 300, 170);
+
   pop();
 }
