@@ -132,7 +132,7 @@ function draw() {
       fill(0);
       textSize(48);
       textAlign(CENTER);
-      text("uh...oh", width / 2, 250);
+      text("uh...oh!", width / 2, 250);
       image(lose, width / 2, 450);
       break;
 
