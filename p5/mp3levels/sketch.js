@@ -80,8 +80,8 @@ function setup() {
 //-------------------------------------------------------------draw
 function draw() {
   image(myfloor, width / 2, height / 2);
-
   textFont(fontDiner);
+
   switch (myState) {
 
     case 0:
@@ -134,9 +134,6 @@ function draw() {
       textAlign(CENTER);
       text("uh...oh!", width / 2, 250);
       image(lose, width / 2, 450);
-      for (var i = 0; i < 200; i++) {
-        pieces.push(new Piece());
-      }
 
       break;
 
