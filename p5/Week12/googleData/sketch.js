@@ -1,4 +1,6 @@
 var namesArray = [];
+var speed;
+var direction;
 
 function preload() {
   mycat = loadImage('assets/bart2.png');
@@ -54,6 +56,7 @@ function draw() {
   // // iterate through the namesArray and display the objects!
   for (let i = 0; i < namesArray.length; i++) {
     namesArray[i].display();
+    namesArray[i].drive();
   }
 
 }
@@ -88,9 +91,7 @@ function Circle(myName,myPet) {  //Circle(myName, myPet)
   }
 
   this.drive = function() {
-    this.pos.add(this.vel);
-
-
+      this.pos.add(this.vel);
 
     if (this.pos.x > width) this.pos.x = 0;
     if (this.pos.x < 0) this.pos.x = width;
