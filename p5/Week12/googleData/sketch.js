@@ -49,7 +49,7 @@ function gotData(data) {
 
 function draw() {
   background(135, 157, 207);
-  image(grid, 0, 0);
+  //image(grid, 0, 0);
 
   // // iterate through the namesArray and display the objects!
   for (let i = 0; i < namesArray.length; i++) {
@@ -89,6 +89,8 @@ function Circle(myName,myPet) {  //Circle(myName, myPet)
 
   this.drive = function() {
     this.pos.add(this.vel);
+
+
 
     if (this.pos.x > width) this.pos.x = 0;
     if (this.pos.x < 0) this.pos.x = width;
