@@ -1,9 +1,20 @@
 var namesArray = [];
 
+function preload() {
+  mycat = loadImage('assets/bart2.png');
+  mydog = loadImage('assets/winston2.png');
+  grid = loadImage('assets/grid.png')
+}
+
 function setup() {
+  angleMode(DEGREES);
+  imageMode(CENTER);
+  textAlign(CENTER);
+  rect(CENTER);
+
 
   // Tabletop stuff, for getting google spreadsheet data in.
-  let url = '6JZyszhgt9WBbU5reeiti1CNr6is4iAObz7zwMFLqBQ/edit?usp=sharing'; // this is KEY of the URL from the sheet
+  let url = '16JZyszhgt9WBbU5reeiti1CNr6is4iAObz7zwMFLqBQ'; // this is KEY of the URL from the sheet
   let settings = {
     key: url, // The url of the published google sheet
     callback: gotData, // A callback for when the data comes in
@@ -15,7 +26,7 @@ function setup() {
 
 
   // Regular setup code we usually have
-  createCanvas(600, 600);
+  createCanvas(800, 800);
   textAlign(CENTER);
   ellipseMode(CENTER);
   rectMode(CENTER);
@@ -26,18 +37,19 @@ function setup() {
 // Each object contains all the data for one row of the sheet
 function gotData(data) {
 
-  console.log(data); // Print the data in the console
+  // console.log(data); // Print the data in the console
 
   // iterate through the array of data and create an object and push it on an array called namesArray
   for (let i = 0; i < data.length; i++) {
-    namesArray.push(new Circle(data[i].Name, data[i].Shape));
+    namesArray.push(new Circle(data[i].Name, data[i].pet));
   }
 
 }
 
 
 function draw() {
-  background('blue');
+  background(135, 157, 207);
+  image(grid, 0, 0);
 
   // // iterate through the namesArray and display the objects!
   for (let i = 0; i < namesArray.length; i++) {
@@ -48,22 +60,51 @@ function draw() {
 
 
 // my circle class
-function Circle(myName, myShape) {
-  this.pos = createVector(random(width), random(height));
+function Circle(myName,myPet) {  //Circle(myName, myPet)
+  this.pos = createVector(random(width - 50), random(height - 50));
+  this.vel = createVector(random(-5, 5), random(-5, 5));
   this.name = myName;
-  this.shape = myShape;
+  this.pet = myPet;
+
 
 
   this.display = function() {
-    if (this.shape == "Circle") {
-        ellipse(this.pos.x, this.pos.y, 100,100) ;  // put an ellipse here
-    }else {
-      rect(this.pos.x, this.pos.y, 100, 100);
+    if (this.pet == "Cat") {
+      fill(60, 0, 255);
+      rect(this.pos.x, this.pos.y + 58, 120, 40)
+      fill(0);
+      textSize(20);
+      text(this.name, this.pos.x, this.pos.y + 64);
+      image(mycat, this.pos.x, this.pos.y); // put an ellipse here
+    } else  {
+      fill(255, 0, 60);
+      rect(this.pos.x, this.pos.y + 66, 120, 40)
+      fill(0);
+      textSize(20);
+      text(this.name, this.pos.x, this.pos.y + 74);
+      image(mydog, this.pos.x, this.pos.y);
+
     }
+  }
 
+  this.drive = function() {
+    this.pos.add(this.vel);
 
-  text(this.name, this.pos.x, this.pos.y);
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
 
   }
 
+
 }
+
+// function winstonDog() {
+//   rect(50, 50, 100, 40);
+//   textSize(20);
+//   fill(0, 0, 0);
+//   text(this.name, 50, 50);
+//   image(mydog, 50, 50);
+//
+// }
