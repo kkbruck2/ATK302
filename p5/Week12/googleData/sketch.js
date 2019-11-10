@@ -28,7 +28,7 @@ function setup() {
 
 
   // Regular setup code we usually have
-  createCanvas(800, 800);
+  createCanvas(600, 600);
   textAlign(CENTER);
   ellipseMode(CENTER);
   rectMode(CENTER);
@@ -64,8 +64,8 @@ function draw() {
 
 // my circle class
 function Circle(myName,myPet) {  //Circle(myName, myPet)
-  this.pos = createVector(random(width - 50), random(height - 50));
-  this.vel = createVector(random(-5, 5), random(-5, 5));
+  this.pos = createVector(random(width), random(height));
+  this.vel = createVector(random(-2, 2), random(-2, 2));
   this.name = myName;
   this.pet = myPet;
 
@@ -93,10 +93,10 @@ function Circle(myName,myPet) {  //Circle(myName, myPet)
   this.drive = function() {
       this.pos.add(this.vel);
 
-    if (this.pos.x > width) this.pos.x = 0;
-    if (this.pos.x < 0) this.pos.x = width;
-    if (this.pos.y > height) this.pos.y = 0;
-    if (this.pos.y < 0) this.pos.y = height;
+    if (this.pos.x > width + 180) this.pos.x = -180;
+    if (this.pos.x < -180) this.pos.x = width + 180;
+    if (this.pos.y > height + 120) this.pos.y = -120;
+    if (this.pos.y < -120) this.pos.y = height + 120;
 
   }
 
