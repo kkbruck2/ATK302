@@ -54,7 +54,7 @@ function draw() {
       text("The wind speed is " + weather.wind.speed, 20, 90);
 
       image(cloud, x, 100);
-      x = x + ws / 8;
+      x = x + ws / 10;
       if (x > width) x = -205;
 
       //image(therm1, width - 70, 25);
@@ -78,6 +78,6 @@ function draw() {
   }
 }
 
-function mouseReleased() {
-  console.log(mouseX + ', ' + mouseY);
-}
+// function mouseReleased() {
+//   console.log(mouseX + ', ' + mouseY);
+// }
