@@ -62,15 +62,15 @@ function draw() {
       noStroke();
       fill(255, 0, 0);
       var tmp;
-      tmp = map(temperature, -10, 110, 0, height - 48);
+      tmp = map(temperature, 10, 110, height - 325, height - 48);
       ellipse(width - 49, height - 49, 30, 30);
 
-      rect(width - 57, height - 50, 15, -tmp);
+      rect(width - 57, height - 48, 15, -tmp);
 
       fill(255);
       ellipse(width - 53, height - 52, 10, 10);
       image(myTherm, width - 94, 25);
-      rect(width - 55, 40, 3, 310);
+      rect(width - 55, 42, 3,310);
 
       // parse the weather object and put some text for some at least 3 different weather data!
       break;
@@ -78,6 +78,6 @@ function draw() {
   }
 }
 
-// function mouseReleased() {
-//   console.log(mouseX + ', ' + mouseY);
-// }
+function mouseReleased() {
+  console.log(mouseX + ', ' + mouseY);
+}
