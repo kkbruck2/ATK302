@@ -55,6 +55,12 @@ function preload() {
 function setup() {
 
   createCanvas(1080, 720);
+
+  //-------------------------------------- initialize accelerometer variables
+  alpha = 0;
+  beta = 0;
+  gamma = 0;
+
   angleMode(DEGREES);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf')
 
@@ -82,7 +88,57 @@ function setup() {
 //-------------------------------------------------------------draw
 function draw() {
   image(myfloor, width / 2, height / 2);
+  //--------------------------------the map command !!!!
+  //--------------------takes your variable and maps it from range 1 to range 2
+  //----------------------map(yourVar, range1_x, range1_y, range2_x, range2_y) ;
+  xPosition = map(gamma, -60, 60, 0, width);
+  yPosition = map(beta, -30, 30, 0, height);
 
+  push(); // before you use translate, rotate, or scale commands, push and then pop after
+
+  translate(xPosition, yPosition); // move everything over by x, y
+
+  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
+
+  image(bunnyImage, 0, 0, 500, 500);
+  //  	rect(0, 0, 100, 100) ;
+  pop();
+
+  catPos.x = xPosition
+  catPos.y = yPosition
+
+  for (var i = 0; i < pieces.length; i++) {
+    mice[i].display();
+    mice[i].drive();
+    if (mice[i].pos.dist(catPos) < 50) {
+      mice.splice(i, 1);
+    }
+  }
+
+  //---------------------------------------DECORATIONS
+  // Just a bunch of text commands to display data coming in from addEventListeners
+  textAlign(LEFT);
+  textSize(20);
+  fill('black');
+  text("orientation data:", 25, 25);
+  textSize(15);
+  text("alpha: " + alpha, 25, 50);
+  text("beta: " + beta, 25, 70);
+  text("gamma: " + gamma, 25, 90);
+  textSize(20);
+  text("acceleration data:", 25, 125);
+  textSize(15);
+  text("x = " + x.toFixed(2), 25, 150); // .toFixed means just show (x) decimal places
+  text("y = " + y.toFixed(2), 25, 170);
+  text("z = " + z.toFixed(4), 25, 190);
+
+  // MORE DECORATIONS - write that pretty ATK type on top.
+  fill('white');
+  noStroke();
+  textSize(300);
+  textAlign(CENTER);
+  text("atk", width / 2, height / 2);
+//---------------------------------------------------------end decorations
   textFont(fontDiner);
   switch (myState) {
 
@@ -119,7 +175,7 @@ function draw() {
       fill(0);
       textSize(48);
       textAlign(CENTER);
-      text("Hee..Hee! WE WON!", width / 2, 150);
+      text("Hee...Hee! WE WON!", width / 2, 150);
       image(win, width / 2, height / 2);
 
       break;
@@ -145,6 +201,22 @@ function draw() {
   //image(mice, 200, 200);
 }
 //----------------------------------------------------end draw
+// HERE'S THE STUFF YOU NEED FOR READING IN DATA!!!
+// Read in accelerometer data
+window.addEventListener('deviceorientation', function(e) {
+  alpha = e.alpha;
+  beta = e.beta;
+  gamma = e.gamma;
+});
+// accelerometer Data
+window.addEventListener('devicemotion', function(e) {
+  // get accelerometer values
+  x = e.acceleration.x;
+  y = e.acceleration.y;
+  z = e.acceleration.z;
+});
+//-------------------------------------- accelerometer  end
+
 //mouseReleased
 function mouseReleased() {
   switch (myState) {
