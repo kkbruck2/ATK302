@@ -1,43 +1,96 @@
-/* For mobile phones - accesses accelerometer.
-Make sure you turn on orientation lock on your iPhone or Android device. */
+var fontDiner
+var grid;
+var myfloor;
+var angle = 0;
+var bkgMusic
 
-var alpha, beta, gamma; // orientation data
-var bunnyImage;
-var xPosition = 0;
-var yPosition = 0;
-var x = 0; // acceleration data
-var y = 0;
-var z = 0;
-var cars = [];
-var frogPos;
+var catPos;
+var myState = 0;
+var timer = 0;
+var leftF, rightF, leftB, rightB, head;
+var mice = [];
+var pieces = [];
+var direction = [];
+var stomachX = 72;
+var stomachY = 200;
+var start;
+var win;
+var lose;
+var winSound;
+var loseSound;
 
+
+function preload() {
+  leftF = loadImage('assets/leftFront.png');
+  rightF = loadImage('assets/rightFront.png');
+  leftB = loadImage('assets/leftBack.png');
+  rightB = loadImage('assets/rightBack.png');
+  head = loadImage('assets/head.png');
+  tail = loadImage('assets/tail.png')
+  grid = loadImage('assets/grid.png');
+  myfloor = loadImage('assets/woodFloor.jpg');
+  start = loadImage('assets/start.png');
+  win = loadImage('assets/win.png');
+  lose = loadImage('assets/lose.png')
+  mice[0] = loadImage('assets/mice1.png');
+  mice[1] = loadImage('assets/mice2.png');
+  mice[2] = loadImage('assets/mice3.png');
+  mice[3] = loadImage('assets/mice4.png');
+  mice[4] = loadImage('assets/mice3.png');
+  mice[5] = loadImage('assets/mice2.png');
+  bkgMusic = loadSound('assets/456797__anechoix__jazz-music-loop.mp3');
+  winSound = loadSound('assets/396174__funwithsound__success-triumph-resolution-sound-effect_01.mp3')
+  loseSound = loadSound('assets/174427__badly99__domino-sound-effect_01.mp3')
+
+  bkgMusic.loop();
+  bkgMusic.stop();
+  winSound.play();
+  winSound.stop();
+  loseSound.play();
+  loseSound.stop();
+
+
+}
+//-----------------------------------------------------------setup
 function setup() {
 
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1080, 720);
 
-  // initialize accelerometer variables
+  //-------------------------------------- initialize accelerometer variables
   alpha = 0;
   beta = 0;
   gamma = 0;
 
-  for (var i = 0; i < 40; i++) {
-    cars.push(new car())
+  angleMode(DEGREES);
+  fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf')
+
+
+  grid = loadImage('assets/grid.png');
+  bkgMusic.play();
+
+
+
+
+
+  //--------------------------Spawn cars
+  for (var i = 0; i < 20; i++) {
+    pieces.push(new Piece());
   }
-  frogPos = createVector(width / 2, height - 80);
-
-  bunnyImage = loadImage("assets/bunny.jpg");
-  imageMode(CENTER);
+  //---------------------------
+  //-------------------------------------------------spawn
+  catPos = createVector(width / 2, height / 2);
   rectMode(CENTER);
-
+  ellipseMode(CENTER);
+  imageMode(CENTER);
 }
+//------------------------------------------------end setup
 
+//-------------------------------------------------------------draw
 function draw() {
-
-  background('#c6f5ff'); // light blue
-
-  // the map command !!!!
-  // takes your variable and maps it from range 1 to range 2
-  // map(yourVar, range1_x, range1_y, range2_x, range2_y) ;
+  image(myfloor, width / 2, height / 2);
+  //--------------------------------the map command !!!!
+  //--------------------takes your variable and maps it from range 1 to range 2
+  //----------------------map(yourVar, range1_x, range1_y, range2_x, range2_y) ;
   xPosition = map(gamma, -60, 60, 0, width);
   yPosition = map(beta, -30, 30, 0, height);
 
@@ -51,18 +104,18 @@ function draw() {
   //  	rect(0, 0, 100, 100) ;
   pop();
 
-frogPos.x = xPosition
-frogPos.y = yPosition
+  catPos.x = xPosition
+  catPos.y = yPosition
 
-  for (var i = 0; i < cars.length; i++) {
-    cars[i].display();
-    cars[i].drive();
-    if (cars[i].pos.dist(frogPos) < 50) {
-      cars.splice(i, 1);
+  for (var i = 0; i < pieces.length; i++) {
+    mice[i].display();
+    mice[i].drive();
+    if (mice[i].pos.dist(catPos) < 50) {
+      mice.splice(i, 1);
     }
   }
 
-  // DECORATIONS
+  //---------------------------------------DECORATIONS
   // Just a bunch of text commands to display data coming in from addEventListeners
   textAlign(LEFT);
   textSize(20);
@@ -85,19 +138,76 @@ frogPos.y = yPosition
   textSize(300);
   textAlign(CENTER);
   text("atk", width / 2, height / 2);
+//---------------------------------------------------------end decorations
+  textFont(fontDiner);
+  switch (myState) {
 
+    case 0:
+      bkgMusic.play();
+      myState = 1;
+    case 1:
+      fill(0);
+      textSize(80);
+      textAlign(CENTER);
+      text("Let's Hunt Mice!", width / 2, 150);
+      image(start, width / 2, height / 2);
+      winSound.stop();
+      loseSound.stop();
+
+      break;
+
+    case 2:
+      game();
+      timer++;
+      if (timer > 1000) {
+        myState = 5;
+        timer = 0;
+      } // the game state
+      break;
+
+    case 3:
+      winSound.play();
+      bkgMusic.stop();
+      myState = 4;
+      break;
+
+    case 4: // the win state
+      fill(0);
+      textSize(48);
+      textAlign(CENTER);
+      text("Hee...Hee! WE WON!", width / 2, 150);
+      image(win, width / 2, height / 2);
+
+      break;
+
+    case 5:
+      bkgMusic.stop();
+      loseSound.play();
+      myState = 6;
+      break;
+
+    case 6: // the lose state
+      fill(0);
+      textSize(48);
+      textAlign(CENTER);
+      text("uh...oh!", width / 2, 250);
+      image(lose, width / 2, 450);
+
+      break;
+
+
+  }
+  //cat(catPos.x, catPos.y);
+  //image(mice, 200, 200);
 }
-
+//----------------------------------------------------end draw
 // HERE'S THE STUFF YOU NEED FOR READING IN DATA!!!
-
 // Read in accelerometer data
 window.addEventListener('deviceorientation', function(e) {
   alpha = e.alpha;
   beta = e.beta;
   gamma = e.gamma;
 });
-
-
 // accelerometer Data
 window.addEventListener('devicemotion', function(e) {
   // get accelerometer values
@@ -105,25 +215,70 @@ window.addEventListener('devicemotion', function(e) {
   y = e.acceleration.y;
   z = e.acceleration.z;
 });
+//-------------------------------------- accelerometer  end
 
-function car() {
-  //attributes
-  this.pos = createVector(100, 100);
+//mouseReleased
+function mouseReleased() {
+  switch (myState) {
+    case 1:
+      myState = 2;
+      break;
+    case 4:
+      resetTheGame();
+      myState = 0;
+      break;
+    case 6:
+      resetTheGame();
+      myState = 0;
+      break;
+  }
+}
+//---------------------------------------------------end mouseReleased
+
+
+//-----------------------------mice class!!
+function Piece() {
+  //--------------------------------------------------------attributes
+  this.pos = createVector(width - 50, height - 50);
   this.vel = createVector(random(-5, 5), random(-5, 5));
-  this.r = random(255);
-  this.g = random(255);
-  this.b = random(255);
-  //vector
+  this.miceNum = 0;
+  this.timer = 0;
+  this.maxTimer = random(1, 8);
 
 
 
+
+
+  //------------------------------------------------------- methods
   this.display = function() {
-    fill(this.r, this.g, this.b);
-    rect(this.pos.x, this.pos.y, 100, 50);
+    //  translate(p5.Vector.fromAngle(millis() / 1000, 40));
 
+    push();
+    // animating the mices
+    //map(this.vel = this.maxTimer.mag());
+    map(this.maxTimer * -1 <= this.vel.mag());
+    translate(this.pos.x, this.pos.y);
+    rotate(this.vel.heading());
+    image(mice[this.miceNum], 0, 0);
+    this.timer++;
+
+
+    if (this.timer > this.maxTimer) {
+      this.miceNum = this.miceNum + 1;
+      this.timer = 0;
+
+    }
+
+
+    //don't go past
+    if (this.miceNum > mice.length - 1) {
+      this.miceNum = 0;
+    }
+
+
+    pop();
   }
 
-  //methods
   this.drive = function() {
     this.pos.add(this.vel);
 
@@ -132,6 +287,94 @@ function car() {
     if (this.pos.y > height) this.pos.y = 0;
     if (this.pos.y < 0) this.pos.y = height;
 
-
   }
+
+}
+
+//--------------------------------------------------------end piecs class
+
+function keyPressed() {
+  if (keyCode === LEFT_ARROW) {
+    //     // translate(catPos.x, catPos.y);
+    //     // rotate(angle);
+    //     // cat(catPos.x, catPos.y);
+    //     catPos.x -= 20 ;
+    angle -= 5;
+  }
+  //
+  if (keyCode === RIGHT_ARROW) {
+    //     // translate(catPos.x, catPos.y);
+    //     // rotate(angle);
+    //     // cat(catPos.x, catPos.y);
+    //   catPos.x += 20 ;
+    angle += 5;
+  }
+}
+
+function checkForKeys() {
+  if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
+  if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
+  if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
+  if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
+
+}
+//reset the game
+function resetTheGame() {
+  pieces = [];
+  //--------------------------Spawn cars
+  for (var i = 0; i < 20; i++) {
+    pieces.push(new Piece());
+  }
+  timer = 0;
+  stomachX = 72;
+
+}
+//-----------------------------------------------end game reset
+
+//------------------------------------------------------ game
+function game() {
+  for (var i = 0; i < pieces.length; i++) {
+    pieces[i].display();
+    pieces[i].drive();
+    if (pieces[i].pos.dist(catPos) < 100) {
+      pieces.splice(i, 1);
+      stomachX += 5;
+    }
+  }
+
+  if (pieces.length == 0) {
+    myState = 3;
+    timer = 0;
+  }
+  push();
+
+  //rotate(angle);
+  ellipse(catPos.x, catPos.y, 25, 25);
+
+  translate(catPos.x, catPos.y);
+  fill('green');
+
+
+  cat();
+  pop();
+  checkForKeys();
+
+}
+
+
+//--------------------------------------------------------------cat function
+function cat() {
+  push();
+  translate(-250, -210);
+  stroke(0);
+  fill(95);
+  image(leftB, 255, 335);
+  image(rightB, 340, 335);
+  ellipse(300, 300, stomachX, stomachY);
+  image(leftF, 340, 190);
+  image(rightF, 255, 190);
+  image(tail, 325, 450);
+  image(head, 300, 170);
+
+  pop();
 }
