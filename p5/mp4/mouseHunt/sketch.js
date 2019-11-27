@@ -3,7 +3,6 @@ var grid;
 var myfloor;
 var angle = 0;
 var bkgMusic
-
 var catPos;
 var myState = 0;
 var timer = 0;
@@ -11,15 +10,15 @@ var myLegs, myBody, head;
 var mice = [];
 var pieces = [];
 var direction = [];
-var stomachX = 72;
-var stomachY = 200;
+var stomachX = 65;
+var stomachY = 214;
 var start;
 var win;
 var lose;
 var winSound;
 var loseSound;
-
-
+//------------------------------------------------------var end
+//------------------------------------------------------preload
 function preload() {
   myLegs = loadImage('assets/legs.png');
   myBody = loadImage('assets/body.png')
@@ -48,6 +47,8 @@ function preload() {
 
 
 }
+//------------------------------------------------------preload end
+
 //-----------------------------------------------------------setup
 function setup() {
 
@@ -63,12 +64,11 @@ function setup() {
 
 
 
-  //--------------------------Spawn cars
+  //--------------------------Spawn mice
   for (var i = 0; i < 20; i++) {
     pieces.push(new Piece());
   }
-  //---------------------------
-  //-------------------------------------------------spawn
+  //---------------------------spawn end
   catPos = createVector(width / 2, height / 2);
   rectMode(CENTER);
   ellipseMode(CENTER);
@@ -136,14 +136,10 @@ function draw() {
       image(lose, width / 2, 450);
 
       break;
-
-
   }
-  //cat(catPos.x, catPos.y);
-  //image(mice, 200, 200);
 }
 //----------------------------------------------------end draw
-//mouseReleased
+//----------------------------------------------------mouseReleased
 function mouseReleased() {
   switch (myState) {
     case 1:
@@ -162,27 +158,28 @@ function mouseReleased() {
 //---------------------------------------------------end mouseReleased
 
 
-//-----------------------------mice class!!
+//----------------------------------------------------mice class!!
 function Piece() {
-  //--------------------------------------------------------attributes
+  //----attributes
   this.pos = createVector(width - 50, height - 50);
-  this.vel = createVector(random(-5, 5), random(-5, 5));
+  this.vel = createVector(random(-7, 7), random(-7, 7));
   this.miceNum = 0;
   this.timer = 0;
-  this.maxTimer = random(1, 8);
+  this.maxTimer = (1, 5);
 
 
 
 
 
-  //------------------------------------------------------- methods
+  //----- methods
+  // display
+
   this.display = function() {
     //  translate(p5.Vector.fromAngle(millis() / 1000, 40));
 
     push();
     // animating the mices
-    //map(this.vel = this.maxTimer.mag());
-    map(this.maxTimer * -1 <= this.vel.mag());
+    map(this.maxTimer * -1 === this.vel.mag());
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
     image(mice[this.miceNum], 0, 0);
@@ -196,15 +193,16 @@ function Piece() {
     }
 
 
-    //don't go past
+    //mice reset
     if (this.miceNum > mice.length - 1) {
       this.miceNum = 0;
     }
 
 
     pop();
-  }
 
+  }
+  //drive
   this.drive = function() {
     this.pos.add(this.vel);
 
@@ -217,8 +215,8 @@ function Piece() {
 
 }
 
-//--------------------------------------------------------end piecs class
-
+//--------------------------------------------------------end pieces class
+//--------------------------------------------------------keyPressed
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
     //     // translate(catPos.x, catPos.y);
@@ -236,7 +234,9 @@ function keyPressed() {
     angle += 5;
   }
 }
+//--------------------------------------------------------keyPressed end
 
+//---------------------------------------------------------checkForKeys
 function checkForKeys() {
   if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
   if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
@@ -244,7 +244,9 @@ function checkForKeys() {
   if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
 
 }
-//reset the game
+//---------------------------------------------------------checkForKeys
+
+//---------------------------------------------------------reset the game
 function resetTheGame() {
   pieces = [];
   //--------------------------Spawn cars
@@ -255,9 +257,9 @@ function resetTheGame() {
   stomachX = 72;
 
 }
-//-----------------------------------------------end game reset
+//----------------------------------------------------------end game reset
 
-//------------------------------------------------------ game
+//------------------------------------------------------------ game
 function game() {
   for (var i = 0; i < pieces.length; i++) {
     pieces[i].display();
@@ -274,11 +276,16 @@ function game() {
   }
   push();
 
-  //rotate(angle);
-  ellipse(catPos.x, catPos.y, 25, 25);
+  // translate(this.pos.x, this.pos.y);
+  // rotate(this.vel.heading());
 
-  translate(catPos.x, catPos.y);
   fill('green');
+  ellipse(catPos.x, catPos.y, 25, 25);
+  translate(catPos.x - 100, catPos.y - 65);
+
+  //translate(catPos.x, catPos.y);
+  //rotate(catPos.heading());
+
 
 
   cat();
@@ -286,20 +293,15 @@ function game() {
   checkForKeys();
 
 }
+//------------------------------------------------------------ game end
 
 
 //--------------------------------------------------------------cat function
 function cat() {
   push();
-  translate(-250, -210);
-  fill(95);
-  image(myLegs, 255, 335);
-  image(rightB, 340, 335);
-  ellipse(300, 300, stomachX, stomachY);
-  image(leftF, 340, 190);
-  image(rightF, 255, 190);
-  image(tail, 325, 450);
-  image(head, 300, 170);
+  image(myLegs, 100, 165);
+  image(myBody, 104, 209, stomachX, stomachY);
+  image(head, 105, 226);
 
   pop();
 }
