@@ -8,5 +8,5 @@ function setup() {
 }
 
 function draw() {
-  image(pies, 20, 100, 200, 200);
+  image(pies, 20, 100);
 }

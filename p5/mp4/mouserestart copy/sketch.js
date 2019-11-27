@@ -7,7 +7,7 @@ var bkgMusic
 var catPos;
 var myState = 0;
 var timer = 0;
-var myLegs, myBody, head;
+var leftF, rightF, leftB, rightB, head;
 var mice = [];
 var pieces = [];
 var direction = [];
@@ -21,9 +21,12 @@ var loseSound;
 
 
 function preload() {
-  myLegs = loadImage('assets/legs.png');
-  myBody = loadImage('assets/body.png')
-  head = loadImage('assets/head_1.png');
+  leftF = loadImage('assets/leftFront.png');
+  rightF = loadImage('assets/rightFront.png');
+  leftB = loadImage('assets/leftBack.png');
+  rightB = loadImage('assets/rightBack.png');
+  head = loadImage('assets/head.png');
+  tail = loadImage('assets/tail.png')
   grid = loadImage('assets/grid.png');
   myfloor = loadImage('assets/woodFloor.jpg');
   start = loadImage('assets/start.png');
@@ -94,7 +97,6 @@ function draw() {
       image(start, width / 2, height / 2);
       winSound.stop();
       loseSound.stop();
-
 
       break;
 
@@ -292,8 +294,9 @@ function game() {
 function cat() {
   push();
   translate(-250, -210);
+  stroke(0);
   fill(95);
-  image(myLegs, 255, 335);
+  image(leftB, 255, 335);
   image(rightB, 340, 335);
   ellipse(300, 300, stomachX, stomachY);
   image(leftF, 340, 190);
