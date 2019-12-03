@@ -1,4 +1,4 @@
-var Chalk;
+var chalk;
 var fontDiner;
 var grid;
 var myfloor;

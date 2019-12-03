@@ -1,30 +1,29 @@
-var fontDiner
+var chalk;
+var fontDiner;
 var grid;
 var myfloor;
 var angle = 0;
 var bkgMusic
-
 var catPos;
 var myState = 0;
 var timer = 0;
-var leftF, rightF, leftB, rightB, head;
+var myLegs, myBody, head;
 var mice = [];
 var pieces = [];
-var stomachX = 72;
-var stomachY = 200;
+var direction = [];
+var stomachX = 65;
+var stomachY = 214;
 var start;
 var win;
 var lose;
 var winSound;
 var loseSound;
-
+//------------------------------------------------------var end
+//------------------------------------------------------preload
 function preload() {
-  leftF = loadImage('assets/leftFront.png');
-  rightF = loadImage('assets/rightFront.png');
-  leftB = loadImage('assets/leftBack.png');
-  rightB = loadImage('assets/rightBack.png');
-  head = loadImage('assets/head.png');
-  tail = loadImage('assets/tail.png')
+  myLegs = loadImage('assets/legs.png');
+  myBody = loadImage('assets/body.png')
+  head = loadImage('assets/head_1.png');
   grid = loadImage('assets/grid.png');
   myfloor = loadImage('assets/woodFloor.jpg');
   start = loadImage('assets/start.png');
@@ -49,14 +48,15 @@ function preload() {
 
 
 }
+//------------------------------------------------------preload end
+
 //-----------------------------------------------------------setup
 function setup() {
 
   createCanvas(1080, 720);
   angleMode(DEGREES);
-  fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf')
-
-
+  fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
+  chalk = loadFont('assets/Chalkboard');
   grid = loadImage('assets/grid.png');
   bkgMusic.play();
 
@@ -64,12 +64,11 @@ function setup() {
 
 
 
-  //--------------------------Spawn cars
-  for (var i = 0; i < 10; i++) {
+  //--------------------------Spawn mice
+  for (var i = 0; i < 20; i++) {
     pieces.push(new Piece());
   }
-  //---------------------------
-  //-------------------------------------------------spawn
+  //---------------------------spawn end
   catPos = createVector(width / 2, height / 2);
   rectMode(CENTER);
   ellipseMode(CENTER);
@@ -81,7 +80,10 @@ function setup() {
 function draw() {
   image(myfloor, width / 2, height / 2);
 
+
   textFont(fontDiner);
+
+
   switch (myState) {
 
     case 0:
@@ -95,6 +97,7 @@ function draw() {
       image(start, width / 2, height / 2);
       winSound.stop();
       loseSound.stop();
+
 
       break;
 
@@ -132,17 +135,14 @@ function draw() {
       fill(0);
       textSize(48);
       textAlign(CENTER);
-      text("uh...oh!", width / 2, 250);
+      text("uh...oh!", width / 2, 150);
       image(lose, width / 2, 450);
+
       break;
-
-
   }
-  //cat(catPos.x, catPos.y);
-  //image(mice, 200, 200);
 }
 //----------------------------------------------------end draw
-//mouseReleased
+//----------------------------------------------------mouseReleased
 function mouseReleased() {
   switch (myState) {
     case 1:
@@ -161,32 +161,52 @@ function mouseReleased() {
 //---------------------------------------------------end mouseReleased
 
 
-//-----------------------------mice class!!
+//----------------------------------------------------mice class!!
 function Piece() {
-  //--------------------------------------------------------attributes
+  //----attributes
   this.pos = createVector(width - 50, height - 50);
-  this.vel = createVector(random(-5, 5), random(-5, 5));
+  this.vel = createVector(random(-6, 6), random(-6, 6));
   this.miceNum = 0;
   this.timer = 0;
+  this.maxTimer = (1, 8);
 
 
-  //------------------------------------------------------- methods
+
+
+
+  //----- methods
+  // display
+
   this.display = function() {
-    image(mice[this.miceNum], this.pos.x, this.pos.y);
+    //  translate(p5.Vector.fromAngle(millis() / 1000, 40));
+
+    push();
+    // animating the mices
+    if (this.vel > 0)map(this.maxTimer * -1 === this.vel.mag());
+    if (this.vel < 0)map(this.maxTimer === this.vel.mag());
+    translate(this.pos.x, this.pos.y);
+    rotate(this.vel.heading());
+    image(mice[this.miceNum], 0, 0);
     this.timer++;
 
-    if (this.timer > 20) {
+
+    if (this.timer > this.maxTimer) {
       this.miceNum = this.miceNum + 1;
       this.timer = 0;
+
     }
 
 
-    //don't go past
+    //mice reset
     if (this.miceNum > mice.length - 1) {
       this.miceNum = 0;
     }
-  }
 
+
+    pop();
+
+  }
+  //drive
   this.drive = function() {
     this.pos.add(this.vel);
 
@@ -199,34 +219,64 @@ function Piece() {
 
 }
 
-//--------------------------------------------------------end piecs class
+//--------------------------------------------------------end pieces class
+//------------------------------------------------------mouse keyPressed
+function mousePressed() {
 
-function keyPressed() {
-  if (keyCode === LEFT_ARROW) {
-    //     // translate(catPos.x, catPos.y);
-    //     // rotate(angle);
-    //     // cat(catPos.x, catPos.y);
-    //     catPos.x -= 20 ;
-    angle -= 5;
-  }
-  //
-  if (keyCode === RIGHT_ARROW) {
-    //     // translate(catPos.x, catPos.y);
-    //     // rotate(angle);
-    //     // cat(catPos.x, catPos.y);
-    //   catPos.x += 20 ;
-    angle += 5;
-  }
-}
+  xOffset = mouseX - catPos.x;
+  yOffset = mouseY - catPos.y;
 
-function checkForKeys() {
-  if (keyIsDown(UP_ARROW )) catPos.y = catPos.y - 5;
-  if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
-  if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
-  if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
 
 }
-//reset the game
+//----------------------------------------------------mouse keyPressed end
+
+//-----------------------------------------------------mouseDragged
+function mouseDragged() {
+
+  catPos.x = mouseX - xOffset;
+  catPos.y = mouseY - yOffset;
+
+  if (mouseX + 1 > 1)
+    push();
+  translate(catPos.x, catPos.y);
+
+  rotate(angle);
+  cat(catPos.x, catPos.y);
+  angle -= 10;
+  pop();
+
+}
+//--------------------------------------------------------keyPressed
+// function keyPressed() {
+//   if (keyCode === LEFT_ARROW) {
+//     //     // translate(catPos.x, catPos.y);
+//     //     // rotate(angle);
+//     //     // cat(catPos.x, catPos.y);
+//     //     catPos.x -= 20 ;
+//     angle -= 5;
+//   }
+//   //
+//   if (keyCode === RIGHT_ARROW) {
+//     //     // translate(catPos.x, catPos.y);
+//     //     // rotate(angle);
+//     //     // cat(catPos.x, catPos.y);
+//     //   catPos.x += 20 ;
+//     angle += 5;
+//   }
+// }
+// //--------------------------------------------------------keyPressed end
+//
+// //---------------------------------------------------------checkForKeys
+// function checkForKeys() {
+//   if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
+//   if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
+//   if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
+//   if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
+//
+// }
+//---------------------------------------------------------checkForKeys
+
+//---------------------------------------------------------reset the game
 function resetTheGame() {
   pieces = [];
   //--------------------------Spawn cars
@@ -237,9 +287,9 @@ function resetTheGame() {
   stomachX = 72;
 
 }
-//-----------------------------------------------end game reset
+//----------------------------------------------------------end game reset
 
-//------------------------------------------------------ game
+//------------------------------------------------------------ game
 function game() {
   for (var i = 0; i < pieces.length; i++) {
     pieces[i].display();
@@ -256,33 +306,32 @@ function game() {
   }
   push();
 
-  //rotate(angle);
-  ellipse(catPos.x, catPos.y, 25, 25);
+  // translate(this.pos.x, this.pos.y);
+  // rotate(this.vel.heading());
 
-  translate(catPos.x, catPos.y);
   fill('green');
+  ellipse(catPos.x, catPos.y, 25, 25);
+  translate(catPos.x - 100, catPos.y - 65);
+
+  //translate(catPos.x, catPos.y);
+  //rotate(catPos.heading());
+
 
 
   cat();
   pop();
-  checkForKeys();
+  //checkForKeys();
 
 }
+//------------------------------------------------------------ game end
 
 
 //--------------------------------------------------------------cat function
 function cat() {
   push();
-  translate(-250, -210);
-  stroke(0);
-  fill(95);
-  image(leftB, 255, 335);
-  image(rightB, 340, 335);
-  ellipse(300, 300, stomachX, stomachY);
-  image(leftF, 340, 190);
-  image(rightF, 255, 190);
-  image(tail, 325, 450);
-  image(head, 300, 170);
+  image(myLegs, 100, 165);
+  image(myBody, 104, 209, stomachX, stomachY);
+  image(head, 105, 226);
 
   pop();
 }
