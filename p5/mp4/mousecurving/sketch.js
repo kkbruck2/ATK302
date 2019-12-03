@@ -5,18 +5,21 @@ var grid;
 var x = 0;
 var y = 0;
 var catPos;
+var locked = false;
+var myState = 0;
 var timer = 0;
 var myLegs, myBody, head;
+var mice = [];
+var pieces = [];
+var direction = [];
 var stomachX = 65;
 var stomachY = 214;
 var speed = 0;
 var mice = [];
 var pieces = [];
+var directions = [];
 var vector = 0;
 var angle = 0;
-var spring = 0.05;
-
-
 //------------------------------------------------------var end
 //----------------------------------------------------preload
 function preload() {
@@ -41,13 +44,15 @@ function setup() {
   for (var i = 0; i < 20; i++) {
     pieces.push(new Piece());
   }
-  //---------------------------Spawn end
+  //---------------------------
   //--------------------------------------------------Cat location
-  catPos = createVector(0, 0);
-  catVel = createVector();
-  myHeading = createVector(mouseX - catPos.x, mouseY - catPos.y );
-  //--------------------------------------------------Modes
+  catPos = createVector(width / 2, height / 2 - 100);
 
+
+
+
+
+  //--------------------------------------------------Modes
   rectMode(CENTER);
   ellipseMode(CENTER);
   imageMode(CENTER);
@@ -58,6 +63,7 @@ function setup() {
 //-----------------------------------------------------draw
 function draw() {
   image(myFloor, width / 2, height / 2);
+  game();
 }
 //------------------------------------------------------draw end
 
@@ -70,20 +76,27 @@ function Piece() {
   this.timer = 0;
   this.maxTimer = (1, 10);
 
+  this.vx = 0;
+  this.vy = 0;
+
 
   //methods
-  //----------this.display
+  //----------this.display end
   this.display = function() {
-    //animating the mices
+    //mice translate
     push();
+    //animating the mices
+    //map(this.vel.mag() == this.maxTimer * -1);
     map(this.maxTimer === this.vel.mag());
     stroke(0);
     noFill();
-    ellipse(this.pos.x, this.pos.y, 150, 150);
+    ellipse(this.pos.x, this.pos.y, 130, 130);
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
     image(mice[this.miceNum], 0, 0);
-    pop();
+    this.timer++;
+
+
 
     if (this.timer > this.maxTimer) {
       this.miceNum = this.miceNum + 1;
@@ -94,7 +107,7 @@ function Piece() {
     if (this.miceNum > mice.length - 1) {
       this.miceNum = 0;
     }
-
+    pop();
   }
   //----------this.display end
   //--------- this.drive
@@ -108,17 +121,19 @@ function Piece() {
 
   }
 }
+//--------- this.drive end
 //------------------------------------------------------piece class  end
 
 //------------------------------------------------------game
 function game() {
+  //var vel = 0;
 
   for (var i = 0; i < pieces.length; i++) {
     pieces[i].display();
     pieces[i].drive();
-    if (pieces[i].pos.dist(catPos) < 100) {
+    if (pieces[i].pos.dist(catPos) < 40) {
       pieces.splice(i, 1);
-      stomachX += 5;
+      stomachX += 3;
     }
   }
 
@@ -126,29 +141,38 @@ function game() {
     myState = 3;
     timer = 0;
   }
-  translate(catPos.x -100, catPos.y -45);
-
+  //---------game cat move
   push();
-  //translate()
+
+
+  noStroke();
 
   fill('green');
   ellipse(catPos.x, catPos.y, 25, 25);
-  translate(mouseX, mouseY);
-  rotate(this.myDir.heading());
+  translate(catPos.x - 100, catPos.y - 65);
+
+  // translate(0, 0);
+  //
+  // rotate(catPos.heading());
+
+
+
 
   cat();
 
-
-
   pop();
   //checkForKeys();
-
+  //----------game cat move end
 }
+//
 //-----------------------------------------------------end game
+
 //------------------------------------------------------mouse keyPressed
 function mousePressed() {
+
   xOffset = mouseX - catPos.x;
   yOffset = mouseY - catPos.y;
+
 
 }
 //----------------------------------------------------mouse keyPressed end
@@ -159,14 +183,14 @@ function mouseDragged() {
   catPos.x = mouseX - xOffset;
   catPos.y = mouseY - yOffset;
 
-  //if (mouseX + 1 > 1)
-  //   push();
-  // translate(catPos.x, catPos.y);
-  //
-  // rotate(angle);
-  // cat(catPos.x, catPos.y);
-  // angle -= 10;
-  // pop();
+  if (mouseX + 1 > 1)
+    push();
+  translate(catPos.x, catPos.y);
+
+  rotate(angle);
+  cat(catPos.x, catPos.y);
+  angle -= 10;
+  pop();
 
 }
 //-----------------------------------------------------mouseDragged end
@@ -174,9 +198,17 @@ function mouseDragged() {
 //----------------------------------------------------cat
 function cat() {
   push();
-  image(myLegs, 100, 15);
-  image(myBody, 104, 65, stomachX, stomachY);
-  image(head, 105, 77);
+  //translate(-100, -200);
+
+
+
+
+  image(myLegs, 100, 165);
+  image(myBody, 104, 209, stomachX, stomachY);
+  image(head, 105, 226);
+  fill(255, 0, 0);
+  //ellipse(catPos.x - 450, catPos.y - 200, 10, 10);
+  //rotate(catPos.heading());
   pop();
 }
-//-----------------------------------------------------cat end
+//-------------------------------------------------------end cat

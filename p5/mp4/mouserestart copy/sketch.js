@@ -184,7 +184,8 @@ function Piece() {
     push();
     // animating the mices
     //map(this.vel = this.maxTimer.mag());
-    map(this.maxTimer * -1 <= this.vel.mag());
+    if ( this.vel <= 0) {
+      map(this.maxTimer <= this.vel.mag());
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
     image(mice[this.miceNum], 0, 0);
