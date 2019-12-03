@@ -1,5 +1,4 @@
-var Chalk;
-var fontDiner;
+var fontDiner
 var grid;
 var myfloor;
 var angle = 0;
@@ -55,8 +54,9 @@ function setup() {
 
   createCanvas(1080, 720);
   angleMode(DEGREES);
-  fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
-  chalk = loadFont('assets/Chalkboard');
+  fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf')
+
+
   grid = loadImage('assets/grid.png');
   bkgMusic.play();
 
@@ -80,10 +80,7 @@ function setup() {
 function draw() {
   image(myfloor, width / 2, height / 2);
 
-
   textFont(fontDiner);
-
-
   switch (myState) {
 
     case 0:
@@ -104,7 +101,7 @@ function draw() {
     case 2:
       game();
       timer++;
-      if (timer > 1000) {
+      if (timer > 500) {
         myState = 5;
         timer = 0;
       } // the game state
@@ -168,7 +165,7 @@ function Piece() {
   this.vel = createVector(random(-6, 6), random(-6, 6));
   this.miceNum = 0;
   this.timer = 0;
-  this.maxTimer = (1, 8);
+  this.maxTimer = (1, 10);
 
 
 

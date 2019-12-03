@@ -75,7 +75,7 @@ function Piece() {
   this.miceNum = 0;
   this.timer = 0;
   this.maxTimer = (1, 10);
-  this.miceArea = createVector(this.pos.x * 2, this.pos.y * 2);
+
 
   this.vx = 0;
   this.vy = 0;
@@ -92,7 +92,6 @@ function Piece() {
     stroke(0);
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
-    image(mice[this.miceNum], 0, 0);
     this.timer++;
 
 
@@ -112,6 +111,10 @@ function Piece() {
   //--------- this.drive
   this.drive = function() {
     this.pos.add(this.vel);
+    //
+    // if (this.pos.x, this.pos.y < this.pos.x * this.pos.y) {
+    //   rotate(3);
+    // }
 
     if (this.pos.x > width) this.pos.x = 0;
     if (this.pos.x < 0) this.pos.x = width;
@@ -132,17 +135,11 @@ function game() {
     pieces[i].display();
     pieces[i].drive();
 
-    }
-    if (pieces[i].pos.dist() < 0) {
-      pieces[i].drive();
-      pieces[i].rotate(5);
-    }
+  }
 
-
-    if (pieces[i].pos.dist(catPos) < 40) {
-      pieces.splice(i, 1);
-      stomachX += 3;
-    }
+  if (this.miceNum > mice.length - 1) {
+    this.miceNum = 0;
+  }
 
 
 
