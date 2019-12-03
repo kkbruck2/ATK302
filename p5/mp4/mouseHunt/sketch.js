@@ -162,10 +162,10 @@ function mouseReleased() {
 function Piece() {
   //----attributes
   this.pos = createVector(width - 50, height - 50);
-  this.vel = createVector(random(-7, 7), random(-7, 7));
+  this.vel = createVector(random(-6, 6), random(-6, 6));
   this.miceNum = 0;
   this.timer = 0;
-  this.maxTimer = (1, 5);
+  this.maxTimer = (1, 8);
 
 
 
@@ -217,34 +217,60 @@ function Piece() {
 }
 
 //--------------------------------------------------------end pieces class
+//------------------------------------------------------mouse keyPressed
+function mousePressed() {
+
+  xOffset = mouseX - catPos.x;
+  yOffset = mouseY - catPos.y;
+
+
+}
+//----------------------------------------------------mouse keyPressed end
+
+//-----------------------------------------------------mouseDragged
+function mouseDragged() {
+
+  catPos.x = mouseX - xOffset;
+  catPos.y = mouseY - yOffset;
+
+  if (mouseX + 1 > 1)
+    push();
+  translate(catPos.x, catPos.y);
+
+  rotate(angle);
+  cat(catPos.x, catPos.y);
+  angle -= 10;
+  pop();
+
+}
 //--------------------------------------------------------keyPressed
-function keyPressed() {
-  if (keyCode === LEFT_ARROW) {
-    //     // translate(catPos.x, catPos.y);
-    //     // rotate(angle);
-    //     // cat(catPos.x, catPos.y);
-    //     catPos.x -= 20 ;
-    angle -= 5;
-  }
-  //
-  if (keyCode === RIGHT_ARROW) {
-    //     // translate(catPos.x, catPos.y);
-    //     // rotate(angle);
-    //     // cat(catPos.x, catPos.y);
-    //   catPos.x += 20 ;
-    angle += 5;
-  }
-}
-//--------------------------------------------------------keyPressed end
-
-//---------------------------------------------------------checkForKeys
-function checkForKeys() {
-  if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
-  if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
-  if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
-  if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
-
-}
+// function keyPressed() {
+//   if (keyCode === LEFT_ARROW) {
+//     //     // translate(catPos.x, catPos.y);
+//     //     // rotate(angle);
+//     //     // cat(catPos.x, catPos.y);
+//     //     catPos.x -= 20 ;
+//     angle -= 5;
+//   }
+//   //
+//   if (keyCode === RIGHT_ARROW) {
+//     //     // translate(catPos.x, catPos.y);
+//     //     // rotate(angle);
+//     //     // cat(catPos.x, catPos.y);
+//     //   catPos.x += 20 ;
+//     angle += 5;
+//   }
+// }
+// //--------------------------------------------------------keyPressed end
+//
+// //---------------------------------------------------------checkForKeys
+// function checkForKeys() {
+//   if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
+//   if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
+//   if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
+//   if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
+//
+// }
 //---------------------------------------------------------checkForKeys
 
 //---------------------------------------------------------reset the game
@@ -291,7 +317,7 @@ function game() {
 
   cat();
   pop();
-  checkForKeys();
+  //checkForKeys();
 
 }
 //------------------------------------------------------------ game end

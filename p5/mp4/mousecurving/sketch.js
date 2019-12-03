@@ -75,6 +75,7 @@ function Piece() {
   this.miceNum = 0;
   this.timer = 0;
   this.maxTimer = (1, 10);
+  this.miceArea = createVector(this.pos.x * 2, this.pos.y * 2);
 
   this.vx = 0;
   this.vy = 0;
@@ -89,8 +90,6 @@ function Piece() {
     //map(this.vel.mag() == this.maxTimer * -1);
     map(this.maxTimer === this.vel.mag());
     stroke(0);
-    noFill();
-    ellipse(this.pos.x, this.pos.y, 130, 130);
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
     image(mice[this.miceNum], 0, 0);
@@ -128,14 +127,25 @@ function Piece() {
 function game() {
   //var vel = 0;
 
+
   for (var i = 0; i < pieces.length; i++) {
     pieces[i].display();
     pieces[i].drive();
+
+    }
+    if (pieces[i].pos.dist() < 0) {
+      pieces[i].drive();
+      pieces[i].rotate(5);
+    }
+
+
     if (pieces[i].pos.dist(catPos) < 40) {
       pieces.splice(i, 1);
       stomachX += 3;
     }
-  }
+
+
+
 
   if (pieces.length == 0) {
     myState = 3;
