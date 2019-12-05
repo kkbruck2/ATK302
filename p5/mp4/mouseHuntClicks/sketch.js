@@ -65,7 +65,7 @@ function setup() {
 
 
   //--------------------------Spawn mice
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 20; i++) {
     pieces.push(new Piece());
   }
   //---------------------------spawn end
@@ -94,7 +94,7 @@ function draw() {
       textSize(80);
       textAlign(CENTER);
       text("Let's Hunt Mice!", width / 2, 180);
-      image(start, width / 2, height / 2 + 30);
+      image(start, width / 2, height / 2 + 50);
       winSound.stop();
       loseSound.stop();
 
@@ -104,7 +104,7 @@ function draw() {
     case 2:
       game();
       timer++;
-      if (timer > 500) {
+      if (timer > 1000) {
         myState = 5;
         timer = 0;
       } // the game state
@@ -120,7 +120,7 @@ function draw() {
       fill(0);
       textSize(60);
       textAlign(CENTER);
-      text("Hee..Hee!       WE WON!", width / 2 - 45, 180);
+      text("Hee..Hee!          WE WON!", width / 2 - 35, 180);
       image(win, width / 2, height / 2);
 
       break;
@@ -142,8 +142,8 @@ function draw() {
   }
 }
 //----------------------------------------------------end draw
-//----------------------------------------------------mouseReleased
-function mouseReleased() {
+//----------------------------------------------------mouseClicked
+function mouseClicked() {
   switch (myState) {
     case 1:
       myState = 2;
@@ -158,6 +158,10 @@ function mouseReleased() {
       break;
   }
 }
+//----------------------------------------------------mouseReleased
+//function mouseReleased() {
+
+
 //---------------------------------------------------end mouseReleased
 
 
@@ -168,7 +172,11 @@ function Piece() {
   this.vel = createVector(random(-6, 6), random(-6, 6));
   this.miceNum = 0;
   this.timer = 0;
-  this.maxTimer = (1, 10);
+  this.maxTimer = (1, 8);
+
+
+
+
 
   //----- methods
   // display
@@ -218,8 +226,11 @@ function Piece() {
 //--------------------------------------------------------end pieces class
 //------------------------------------------------------mouse keyPressed
 function mousePressed() {
+
   xOffset = mouseX - catPos.x;
   yOffset = mouseY - catPos.y;
+
+
 }
 //----------------------------------------------------mouse keyPressed end
 
@@ -229,23 +240,51 @@ function mouseMoved() {
   catPos.x = mouseX - xOffset;
   catPos.y = mouseY - yOffset;
 
-  if (mouseX + 1 > 1)
-    push();
-  translate(catPos.x, catPos.y);
+//  if (mouseX + 1 > 1)
+    // push();
+//  translate(catPos.x, catPos.y);
 
-  rotate(angle);
-  cat(catPos.x, catPos.y);
-  angle -= 10;
-  pop();
+  // rotate(angle);
+  // cat(catPos.x, catPos.y);
+  // angle -= 10;
+  // pop();
 
 }
-
+//--------------------------------------------------------keyPressed
+// function keyPressed() {
+//   if (keyCode === LEFT_ARROW) {
+//     //     // translate(catPos.x, catPos.y);
+//     //     // rotate(angle);
+//     //     // cat(catPos.x, catPos.y);
+//     //     catPos.x -= 20 ;
+//     angle -= 5;
+//   }
+//   //
+//   if (keyCode === RIGHT_ARROW) {
+//     //     // translate(catPos.x, catPos.y);
+//     //     // rotate(angle);
+//     //     // cat(catPos.x, catPos.y);
+//     //   catPos.x += 20 ;
+//     angle += 5;
+//   }
+// }
+// //--------------------------------------------------------keyPressed end
+//
+// //---------------------------------------------------------checkForKeys
+// function checkForKeys() {
+//   if (keyIsDown(UP_ARROW)) catPos.y = catPos.y - 5;
+//   if (keyIsDown(DOWN_ARROW)) catPos.y = catPos.y + 5;
+//   if (keyIsDown(LEFT_ARROW)) catPos.x = catPos.x - 5;
+//   if (keyIsDown(RIGHT_ARROW)) catPos.x = catPos.x + 5;
+//
+// }
+//---------------------------------------------------------checkForKeys
 
 //---------------------------------------------------------reset the game
 function resetTheGame() {
   pieces = [];
   //--------------------------Spawn cars
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 20; i++) {
     pieces.push(new Piece());
   }
   timer = 0;
@@ -261,7 +300,7 @@ function game() {
     pieces[i].drive();
     if (pieces[i].pos.dist(catPos) < 100) {
       pieces.splice(i, 1);
-      stomachX += 2;
+      stomachX += 5;
     }
   }
 
@@ -271,10 +310,21 @@ function game() {
   }
   push();
 
+  // translate(this.pos.x, this.pos.y);
+  // rotate(this.vel.heading());
+
+  //fill('green');
+  //ellipse(catPos.x, catPos.y, 25, 25);
   translate(catPos.x - 100, catPos.y - 65);
+
+  //translate(catPos.x, catPos.y);
+  //rotate(catPos.heading());
+
+
 
   cat();
   pop();
+  //checkForKeys();
 
 }
 //------------------------------------------------------------ game end
