@@ -65,7 +65,7 @@ function setup() {
 
 
   //--------------------------Spawn mice
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 30; i++) {
     pieces.push(new Piece());
   }
   //---------------------------spawn end
@@ -245,7 +245,7 @@ function mouseMoved() {
 function resetTheGame() {
   pieces = [];
   //--------------------------Spawn cars
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 30; i++) {
     pieces.push(new Piece());
   }
   timer = 0;
