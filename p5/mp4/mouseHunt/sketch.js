@@ -104,7 +104,7 @@ function draw() {
     case 2:
       game();
       timer++;
-      if (timer > 800) {
+      if (timer > 1000) {
         myState = 5;
         timer = 0;
       } // the game state
