@@ -244,16 +244,11 @@ function Piece() {
     if (this.timer > this.maxTimer) {
       this.miceNum = this.miceNum + 1;
       this.timer = 0;
-
     }
-
-
     //mice reset
     if (this.miceNum > mice.length - 1) {
       this.miceNum = 0;
     }
-
-
     pop();
 
   }
