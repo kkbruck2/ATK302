@@ -296,9 +296,17 @@ function game() {
     myState = 3;
     timer = 0;
   }
-  push();
+
+  push(); // before you use translate, rotate, or scale commands, push and then pop after
+
+  translate(xPosition, yPosition); // move everything over by x, y
+
+  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
+
   cat();
+  //  	rect(0, 0, 100, 100) ;
   pop();
+
 }
 //------------------------------------------------------------ game end
 
