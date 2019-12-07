@@ -121,8 +121,8 @@ function draw() {
 
   // iterate through the car loop
   for (var i = 0; i < pieces.length; i++) {
-    piece[i].display();
-    piece[i].drive();
+    pieces[i].display();
+    pieces[i].drive();
     if (pieces[i].pos.dist(catPos) < 50) {
       pieces.splice(i, 1);
     }
@@ -291,7 +291,7 @@ function Piece() {
     // rotate(this.vel.heading());
 
 
-    translate(catPos.x - 100, catPos.y - 65);
+    //translate(catPos.x - 100, catPos.y - 65);
 
     //translate(catPos.x, catPos.y);
     //rotate(catPos.heading());
