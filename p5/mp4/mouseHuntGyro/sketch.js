@@ -97,7 +97,7 @@ function setup() {
 //---------------------------------------------------draw
 function draw() {
 
-  image(myfloor, width / 2, height / 2, windowWidth / 2, windowHeight / 2);
+  image(myfloor, width / 2, height / 2);
 
   textFont(fontDiner);
 
