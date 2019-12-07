@@ -101,6 +101,19 @@ function draw() {
   image(myfloor, width / 2, height / 2);
 
   textFont(fontDiner);
+  
+  xPosition = map(gamma, -60, 60, 0, width);
+  yPosition = map(beta, -30, 30, 0, height);
+
+  push(); // before you use translate, rotate, or scale commands, push and then pop after
+
+  translate(xPosition, yPosition); // move everything over by x, y
+
+  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
+
+  cat();
+  //  	rect(0, 0, 100, 100) ;
+  pop();
 
   // the map command !!!!
   // takes your variable and maps it from range 1 to range 2
@@ -300,18 +313,7 @@ function game() {
     timer = 0;
   }
 
-  xPosition = map(gamma, -60, 60, 0, width);
-  yPosition = map(beta, -30, 30, 0, height);
 
-  push(); // before you use translate, rotate, or scale commands, push and then pop after
-
-  translate(xPosition, yPosition); // move everything over by x, y
-
-  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
-
-  cat();
-  //  	rect(0, 0, 100, 100) ;
-  pop();
 
 }
 //------------------------------------------------------------ game end
