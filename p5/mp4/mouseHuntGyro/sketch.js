@@ -1,5 +1,6 @@
 //-------------------------------------------------------gyro variables
-var beta, gamma; // orientation data
+var alpha, beta, gamma; // orientation data
+var myLegs, myBody, head;
 var xPosition = 0;
 var yPosition = 0;
 var x = 0; // acceleration data
@@ -17,11 +18,11 @@ var fontDiner;
 var grid;
 var myfloor;
 var angle = 0;
-var bkgMusic
+var bkgMusic;
 var catPos;
 var myState = 0;
 var timer = 0;
-var myLegs, myBody, head;
+
 var mice = [];
 var pieces = [];
 var direction = [];
@@ -51,8 +52,8 @@ function preload() {
   mice[4] = loadImage('assets/mice3.png');
   mice[5] = loadImage('assets/mice2.png');
   bkgMusic = loadSound('assets/456797__anechoix__jazz-music-loop.mp3');
-  winSound = loadSound('assets/396174__funwithsound__success-triumph-resolution-sound-effect_01.mp3')
-  loseSound = loadSound('assets/174427__badly99__domino-sound-effect_01.mp3')
+  winSound = loadSound('assets/396174__funwithsound__success-triumph-resolution-sound-effect_01.mp3');
+  loseSound = loadSound('assets/174427__badly99__domino-sound-effect_01.mp3');
 
   bkgMusic.loop();
   bkgMusic.stop();
@@ -184,6 +185,23 @@ function draw() {
   text("z = " + z, 25, 190);
 }
 //----------------------------------------------------end draw
+
+// Read in accelerometer data
+window.addEventListener('deviceorientation', function(e) {
+  alpha = e.alpha;
+  beta = e.beta;
+  gamma = e.gamma;
+});
+
+
+// accelerometer Data
+window.addEventListener('devicemotion', function(e) {
+  // get accelerometer values
+  x = e.acceleration.x;
+  y = e.acceleration.y;
+  z = e.acceleration.z;
+});
+
 //----------------------------------------------------touch touchStarted
 function touchStarted() {
   switch (myState) {
@@ -202,21 +220,6 @@ function touchStarted() {
 }
 //---------------------------------------------------touch touchStarted
 
-// Read in accelerometer data
-window.addEventListener('deviceorientation', function(e) {
-  alpha = e.alpha;
-  beta = e.beta;
-  gamma = e.gamma;
-});
-
-
-// accelerometer Data
-window.addEventListener('devicemotion', function(e) {
-  // get accelerometer values
-  x = e.acceleration.x;
-  y = e.acceleration.y;
-  z = e.acceleration.z;
-});
 
 //---------------------------------------------------------- car class!!
 function Piece() {
