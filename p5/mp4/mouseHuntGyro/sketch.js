@@ -1,13 +1,11 @@
 //-------------------------------------------------------gyro variables
 var beta, gamma; // orientation data
-var bunnyImage;
 var xPosition = 0;
 var yPosition = 0;
 var x = 0; // acceleration data
 var y = 0;
 var z = 0;
-var cars = [];
-var frogPos;
+
 var pstate1 = false ;
 var pstate2 = false ;
 var alreadyTouched = false;
@@ -99,7 +97,6 @@ function setup() {
 
 function draw() {
 
-  background('#c6f5ff'); // light blue
 
   // the map command !!!!
   // takes your variable and maps it from range 1 to range 2
@@ -115,7 +112,7 @@ function draw() {
 
  // image(bunnyImage, 0, 0, 500, 500);
 
-    	ellipse(0, 0, 200, 200) ;
+//    	ellipse(0, 0, 200, 200) ;
   pop();
 
 
@@ -234,31 +231,31 @@ function Piece() {
 
   //--------------------------------------------------------end pieces class
   //------------------------------------------------------mouse keyPressed
-  function mousePressed() {
-
-    xOffset = mouseX - catPos.x;
-    yOffset = mouseY - catPos.y;
-
-
-  }
+  // function mousePressed() {
+  //
+  //   xOffset = mouseX - catPos.x;
+  //   yOffset = mouseY - catPos.y;
+  //
+  //
+  // }
   //----------------------------------------------------mouse keyPressed end
 
   //-----------------------------------------------------mouseDragged
-  function mouseDragged() {
-
-    catPos.x = mouseX - xOffset;
-    catPos.y = mouseY - yOffset;
-
-    if (mouseX + 1 > 1)
-      push();
-    translate(catPos.x, catPos.y);
-
-    rotate(angle);
-    cat(catPos.x, catPos.y);
-    angle -= 10;
-    pop();
-
-  }
+  // function mouseDragged() {
+  //
+  //   catPos.x = mouseX - xOffset;
+  //   catPos.y = mouseY - yOffset;
+  //
+  //   if (mouseX + 1 > 1)
+  //     push();
+  //   translate(catPos.x, catPos.y);
+  //
+  //   rotate(angle);
+  //   cat(catPos.x, catPos.y);
+  //   angle -= 10;
+  //   pop();
+  //
+  // }
 
   //---------------------------------------------------------reset the game
   function resetTheGame() {
