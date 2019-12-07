@@ -6,8 +6,8 @@ var x = 0; // acceleration data
 var y = 0;
 var z = 0;
 
-var pstate1 = false ;
-var pstate2 = false ;
+var pstate1 = false;
+var pstate2 = false;
 var alreadyTouched = false;
 //-----------------------------------------------------------gyro variables end
 
@@ -72,7 +72,7 @@ function setup() {
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
   grid = loadImage('assets/grid.png');
   bkgMusic.play();
- // requestT() ;
+  // requestT() ;
 
   // initialize accelerometer variables
   alpha = 0;
@@ -80,23 +80,26 @@ function setup() {
   gamma = 0;
 
 
-    //--------------------------Spawn mice
-    for (var i = 0; i < 20; i++) {
-      pieces.push(new Piece());
-    }
-    //---------------------------spawn end
-    catPos = createVector(width / 2, height / 2);
-    rectMode(CENTER);
-    ellipseMode(CENTER);
-    imageMode(CENTER);
-
+  //--------------------------Spawn mice
+  for (var i = 0; i < 20; i++) {
+    pieces.push(new Piece());
   }
-  //------------------------------------------------end setup
+  //---------------------------spawn end
+  catPos = createVector(width / 2, height / 2);
+  rectMode(CENTER);
+  ellipseMode(CENTER);
+  imageMode(CENTER);
+
+}
+//------------------------------------------------end setup
 
 
-
+//---------------------------------------------------draw
 function draw() {
 
+  image(myfloor, width / 2, height / 2, windowWidth / 2, windowHeight / 2);
+
+  textFont(fontDiner);
 
   // the map command !!!!
   // takes your variable and maps it from range 1 to range 2
@@ -104,31 +107,63 @@ function draw() {
   xPosition = map(gamma, -60, 60, 0, width);
   yPosition = map(beta, -30, 30, 0, height);
 
-  push(); // before you use translate, rotate, or scale commands, push and then pop after
 
-  translate(xPosition, yPosition); // move everything over by x, y
+  switch (myState) {
 
-  rotate(radians(alpha)); // using alpha in here so it doesn't feel bad
+    case 0:
+      bkgMusic.play();
+      myState = 1;
+    case 1:
+      fill(0);
+      textSize(80);
+      textAlign(CENTER);
+      text("Let's Hunt Mice!", width / 2, 180);
+      image(start, width / 2, height / 2 + 30);
+      winSound.stop();
+      loseSound.stop();
 
- // image(bunnyImage, 0, 0, 500, 500);
 
-//    	ellipse(0, 0, 200, 200) ;
-  pop();
+      break;
 
+    case 2:
+      game();
+      timer++;
+      if (timer > 1000) {
+        myState = 5;
+        timer = 0;
+      } // the game state
+      break;
 
-  catPos.x = xPosition;
-  catPos.y = yPosition;
+    case 3:
+      winSound.play();
+      bkgMusic.stop();
+      myState = 4;
+      break;
 
-  // iterate through the car loop
-  for (var i = 0; i < pieces.length; i++) {
-    pieces[i].display();
-    pieces[i].drive();
-    if (pieces[i].pos.dist(catPos) < 50) {
-      pieces.splice(i, 1);
-    }
+    case 4: // the win state
+      fill(0);
+      textSize(60);
+      textAlign(CENTER);
+      text("Hee..Hee!       WE WON!", width / 2 - 45, 180);
+      image(win, width / 2, height / 2);
+
+      break;
+
+    case 5:
+      bkgMusic.stop();
+      loseSound.play();
+      myState = 6;
+      break;
+
+    case 6: // the lose state
+      fill(0);
+      textSize(60);
+      textAlign(CENTER);
+      text("uh...oh!", width / 2, 180);
+      image(lose, width / 2, 450);
+
+      break;
   }
-
-
   // DECORATIONS
   // Just a bunch of text commands to display data coming in from addEventListeners
   textAlign(LEFT);
@@ -147,12 +182,25 @@ function draw() {
   text("x = " + x, 25, 150); // .toFixed means just show (x) decimal places
   text("y = " + y, 25, 170);
   text("z = " + z, 25, 190);
-
-  // MORE DECORATIONS - write that pretty ATK type on top.
-
 }
-
-// HERE'S THE STUFF YOU NEED FOR READING IN DATA!!!
+//----------------------------------------------------end draw
+//----------------------------------------------------touch touchStarted
+function touchStarted() {
+  switch (myState) {
+    case 1:
+      myState = 2;
+      break;
+    case 4:
+      resetTheGame();
+      myState = 0;
+      break;
+    case 6:
+      resetTheGame();
+      myState = 0;
+      break;
+  }
+}
+//---------------------------------------------------touch touchStarted
 
 // Read in accelerometer data
 window.addEventListener('deviceorientation', function(e) {
@@ -170,10 +218,6 @@ window.addEventListener('devicemotion', function(e) {
   z = e.acceleration.z;
 });
 
-
-
-
-
 //---------------------------------------------------------- car class!!
 function Piece() {
   //--------------------------attributes
@@ -182,135 +226,93 @@ function Piece() {
   this.miceNum = 0;
   this.timer = 0;
   this.maxTimer = (1, 8);
-
-
-
   //-----------------------------methods
 
-    this.display = function() {
-      //  translate(p5.Vector.fromAngle(millis() / 1000, 40));
+  this.display = function() {
+    //  translate(p5.Vector.fromAngle(millis() / 1000, 40));
 
-      push();
-      // animating the mices
-      if (this.vel > 0)map(this.maxTimer * -1 === this.vel.mag());
-      if (this.vel < 0)map(this.maxTimer === this.vel.mag());
-      translate(this.pos.x, this.pos.y);
-      rotate(this.vel.heading());
-      image(mice[this.miceNum], 0, 0);
-      this.timer++;
-
-
-      if (this.timer > this.maxTimer) {
-        this.miceNum = this.miceNum + 1;
-        this.timer = 0;
-
-      }
+    push();
+    // animating the mices
+    if (this.vel > 0) map(this.maxTimer * -1 === this.vel.mag());
+    if (this.vel < 0) map(this.maxTimer === this.vel.mag());
+    translate(this.pos.x, this.pos.y);
+    rotate(this.vel.heading());
+    image(mice[this.miceNum], 0, 0);
+    this.timer++;
 
 
-      //mice reset
-      if (this.miceNum > mice.length - 1) {
-        this.miceNum = 0;
-      }
-
-
-      pop();
+    if (this.timer > this.maxTimer) {
+      this.miceNum = this.miceNum + 1;
+      this.timer = 0;
 
     }
-    //drive
-    this.drive = function() {
-      this.pos.add(this.vel);
 
-      if (this.pos.x > width) this.pos.x = 0;
-      if (this.pos.x < 0) this.pos.x = width;
-      if (this.pos.y > height) this.pos.y = 0;
-      if (this.pos.y < 0) this.pos.y = height;
 
+    //mice reset
+    if (this.miceNum > mice.length - 1) {
+      this.miceNum = 0;
     }
+
+
+    pop();
+
+  }
+  //drive
+  this.drive = function() {
+    this.pos.add(this.vel);
+
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
 
   }
 
-  //--------------------------------------------------------end pieces class
-  //------------------------------------------------------mouse keyPressed
-  // function mousePressed() {
-  //
-  //   xOffset = mouseX - catPos.x;
-  //   yOffset = mouseY - catPos.y;
-  //
-  //
-  // }
-  //----------------------------------------------------mouse keyPressed end
+}
 
-  //-----------------------------------------------------mouseDragged
-  // function mouseDragged() {
-  //
-  //   catPos.x = mouseX - xOffset;
-  //   catPos.y = mouseY - yOffset;
-  //
-  //   if (mouseX + 1 > 1)
-  //     push();
-  //   translate(catPos.x, catPos.y);
-  //
-  //   rotate(angle);
-  //   cat(catPos.x, catPos.y);
-  //   angle -= 10;
-  //   pop();
-  //
-  // }
+//--------------------------------------------------------end pieces class
 
-  //---------------------------------------------------------reset the game
-  function resetTheGame() {
-    pieces = [];
-    //--------------------------Spawn cars
-    for (var i = 0; i < 20; i++) {
-      pieces.push(new Piece());
+
+//---------------------------------------------------------reset the game
+function resetTheGame() {
+  pieces = [];
+  //--------------------------Spawn cars
+  for (var i = 0; i < 20; i++) {
+    pieces.push(new Piece());
+  }
+  timer = 0;
+  stomachX = 72;
+
+}
+//----------------------------------------------------------end game reset
+
+//------------------------------------------------------------ game
+function game() {
+  for (var i = 0; i < pieces.length; i++) {
+    pieces[i].display();
+    pieces[i].drive();
+    if (pieces[i].pos.dist(catPos) < 100) {
+      pieces.splice(i, 1);
+      stomachX += 5;
     }
+  }
+
+  if (pieces.length == 0) {
+    myState = 3;
     timer = 0;
-    stomachX = 72;
-
   }
-  //----------------------------------------------------------end game reset
+  push();
+  cat();
+  pop();
+}
+//------------------------------------------------------------ game end
 
-  //------------------------------------------------------------ game
-  function game() {
-    for (var i = 0; i < pieces.length; i++) {
-      pieces[i].display();
-      pieces[i].drive();
-      if (pieces[i].pos.dist(catPos) < 100) {
-        pieces.splice(i, 1);
-        stomachX += 5;
-      }
-    }
+//--------------------------------------------------------------cat function
+function cat() {
+  push();
+  image(myLegs, 100, 165);
+  image(myBody, 104, 209, stomachX, stomachY);
+  image(head, 105, 226);
 
-    if (pieces.length == 0) {
-      myState = 3;
-      timer = 0;
-    }
-    push();
-
-    // translate(this.pos.x, this.pos.y);
-    // rotate(this.vel.heading());
-
-
-    //translate(catPos.x - 100, catPos.y - 65);
-
-    //translate(catPos.x, catPos.y);
-    //rotate(catPos.heading());
-
-
-
-    cat();
-    pop();
-    //checkForKeys();
-
-  }
-  //------------------------------------------------------------ game end
-
-  //--------------------------------------------------------------cat function
-  function cat() {
-    push();
-    image(myLegs, 100, 165);
-    image(myBody, 104, 209, stomachX, stomachY);
-    image(head, 105, 226);
-
-    pop();
-  }
+  pop();
+}
