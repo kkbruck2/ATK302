@@ -1,21 +1,52 @@
 <!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+<html>
 
-    <title>Mouse Hunt</title>
-    <style> body {padding: 0; margin: 0;} </style>
-    <script src="../../libs/p5.js"></script>
-    <script src="../../libs/p5.dom.js"></script>
-    <script src="../../libs/p5.sound.js"></script>
-    <script src="sketch.js"></script>
-    <script language="javascript" src="sketch.js"></script>
-    <style> body {padding: 0; margin: 0;} </style>
+<head>
+	<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
 
-  </head>
-  <body>
-  </body>
+	<!-- p5js -->
+
+	<script src="../../libs/p5.min.js"></script>
+
+
+	<script>
+		if (location.protocol != 'https:') {
+		 location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+		}
+
+		function requestT() {
+
+			if (typeof(DeviceMotionEvent) !== 'undefined' && typeof(DeviceMotionEvent.requestPermission) === 'function') {
+			//	alert('enter');
+				DeviceMotionEvent.requestPermission().then(response => {
+		//				alert('resp' + response);
+						if (response == 'granted') {
+							window.addEventListener('devicemotion', (e) => {
+								// do something with e
+								// -- I do this in the sketch.js
+							})
+						}
+					})
+					.catch(console.error)
+			} else {
+				alert('DeviceMotionEvent is not defined');
+			}
+		}
+
+		document.onclick = function() {
+			requestT() ;
+			this.onclick=null;  // get rid of this so we only do the request once.
+		};
+	</script>
+
+	<script src="sketch.js"></script>
+
+	<meta charset="utf-8" />
+
+</head>
+
+<body>
+
+</body>
+
 </html>
