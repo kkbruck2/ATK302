@@ -101,7 +101,7 @@ function draw() {
   image(myfloor, width / 2, height / 2);
 
   textFont(fontDiner);
-  
+                   y
   xPosition = map(gamma, -60, 60, 0, width);
   yPosition = map(beta, -30, 30, 0, height);
 
