@@ -28,7 +28,7 @@ function preload() {
   myfloor = loadImage('assets/woodFloor.jpg');
   start = loadImage('assets/start.png');
   win = loadImage('assets/winCat.png');
-  lose = loadImage('assets/lose.png')
+  lose = loadImage('assets/loss.png')
   mice[0] = loadImage('assets/mice1.png');
   mice[1] = loadImage('assets/mice2.png');
   mice[2] = loadImage('assets/mice3.png');
@@ -56,7 +56,7 @@ function setup() {
   createCanvas(1080, 720);
   angleMode(DEGREES);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
-  chalk = loadFont('assets/Chalkboard');
+  chalk = loadFont('assets/Chalkboard.ttc');
   grid = loadImage('assets/grid.png');
   bkgMusic.play();
 
@@ -93,7 +93,7 @@ function draw() {
       fill(0);
       textSize(80);
       textAlign(CENTER);
-      text("Let's Hunt Mice!", width / 2, 180);
+      text("Let's Hunt Mice!", width / 2, 120);
       image(start, width / 2, height / 2 + 30);
       winSound.stop();
       loseSound.stop();
@@ -120,7 +120,7 @@ function draw() {
       fill(0);
       textSize(60);
       textAlign(CENTER);
-      text("Hee..Hee!       WE WON!", width / 2 - 45, 180);
+      text("Hee..Hee!       WE WON!", width / 2 - 15, 120);
       image(win, width / 2, height / 2);
 
       break;
@@ -135,8 +135,8 @@ function draw() {
       fill(0);
       textSize(60);
       textAlign(CENTER);
-      text("uh...oh!", width / 2, 180);
-      image(lose, width / 2, 450);
+      text("uh...oh!", width / 2, 120);
+      image(lose, width / 2, 400);
 
       break;
   }
