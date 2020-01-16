@@ -46,14 +46,14 @@ function draw() {
   image(bkg, 0, 0);
 
   vol = mic.getLevel();
-  vol = vol * 100;
+  vol = vol * 150;
 
   if (delayTimer > 0) {
-    delayTimer--;
+        delayTimer--;
   }
 
-  if ((vol > 20) && (delayTimer == 0)) { // you may have to change that 9
-    delayTimer = 90;
+  if ((vol > 7) && (delayTimer == 0)) { // you may have to change that 9
+    delayTimer = 30;
 
     hivState++;
     //  hivState <= 1;
