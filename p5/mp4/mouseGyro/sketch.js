@@ -15,7 +15,7 @@ var alreadyTouched = false;
 
 function setup() {
 
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(displayWidth, displayHeight);
   deviceOrientation(LANDSCAPE);
  // requestT() ;
 
