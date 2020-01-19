@@ -81,7 +81,10 @@ function setup() {
 function draw() {
   image(myfloor, width / 2, height / 2);
 
+  image(start, width / 2, height / 2);
+
   textFont(fontDiner);
+  text("Let's Hunt Mice!", width / 2, 150);
   switch (myState) {
 
     case 0:
@@ -91,8 +94,7 @@ function draw() {
       fill(0);
       textSize(80);
       textAlign(CENTER);
-      text("Let's Hunt Mice!", width / 2, 150);
-      image(start, width / 2, height / 2);
+
       winSound.stop();
       loseSound.stop();
 
