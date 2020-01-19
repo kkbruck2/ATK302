@@ -68,7 +68,7 @@ function preload() {
 
 
 function setup() {
-  createCanvas(displayWidth, distplayHeight);
+  createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
   deviceOrientation(LANDSCAPE);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
@@ -102,7 +102,6 @@ function draw() {
   image(myfloor, width / 2, height / 2);
 
   textFont(fontDiner);
-                   y
   xPosition = map(gamma, -60, 60, 0, width);
   yPosition = map(beta, -30, 30, 0, height);
 
