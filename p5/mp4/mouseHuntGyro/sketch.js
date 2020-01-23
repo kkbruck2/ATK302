@@ -40,11 +40,10 @@ function preload() {
   myLegs = loadImage('assets/legs.png');
   myBody = loadImage('assets/body.png')
   head = loadImage('assets/head_1.png');
-  grid = loadImage('assets/grid.png');
   myfloor = loadImage('assets/woodFloor.jpg');
   start = loadImage('assets/start.png');
-  win = loadImage('assets/win.png');
-  lose = loadImage('assets/lose.png')
+  win = loadImage('assets/winCat.png');
+  lose = loadImage('assets/loss.png')
   mice[0] = loadImage('assets/mice1.png');
   mice[1] = loadImage('assets/mice2.png');
   mice[2] = loadImage('assets/mice3.png');
@@ -72,7 +71,6 @@ function setup() {
   angleMode(DEGREES);
   deviceOrientation(LANDSCAPE);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
-  grid = loadImage('assets/grid.png');
   bkgMusic.play();
   // requestT() ;
 
