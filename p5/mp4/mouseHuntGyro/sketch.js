@@ -77,7 +77,7 @@ function setup() {
   // initialize accelerometer variables
   alpha = 0;
   beta = 0;
-  gamma = -70;
+  gamma = 0;
 
 
   //--------------------------Spawn mice
