@@ -69,7 +69,7 @@ function preload() {
 function setup() {
   createCanvas(1080, 720);
   angleMode(DEGREES);
-  deviceOrientation(LANDSCAPE);
+  // deviceOrientation(LANDSCAPE);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
   bkgMusic.play();
   // requestT() ;
@@ -77,7 +77,7 @@ function setup() {
   // initialize accelerometer variables
   alpha = 0;
   beta = 0;
-  gamma = 0;
+  gamma = -70;
 
 
   //--------------------------Spawn mice
