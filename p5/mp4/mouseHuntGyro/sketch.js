@@ -7,9 +7,9 @@ var x = 0; // acceleration data
 var y = 0;
 var z = 0;
 
-var pstate1 = false;
-var pstate2 = false;
-var alreadyTouched = false;
+// var pstate1 = false;
+// var pstate2 = false;
+// var alreadyTouched = false;
 //-----------------------------------------------------------gyro variables end
 
 //-----------------------------------------------------------Mouse hunt variable
