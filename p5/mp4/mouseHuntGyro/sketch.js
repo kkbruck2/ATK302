@@ -67,9 +67,9 @@ function preload() {
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1080, 720);
   angleMode(DEGREES);
-  // deviceOrientation(LANDSCAPE);
+  deviceOrientation(LANDSCAPE);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
   bkgMusic.play();
   // requestT() ;
