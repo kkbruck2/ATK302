@@ -67,9 +67,11 @@ function preload() {
 
 
 function setup() {
-  createCanvas(1080, 720);
+
+  createCanvas(windowWidth, windowHeight);
+
   angleMode(DEGREES);
-// deviceOrientation(LANDSCAPE);
+  // deviceOrientation(LANDSCAPE);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
   bkgMusic.play();
   // requestT() ;
@@ -97,7 +99,7 @@ function setup() {
 //---------------------------------------------------draw
 function draw() {
 
-  image(myfloor, width / 2, height / 2);
+  image(myfloor, width / 2, height / 2, windowWidth, windowHeight);
 
   textFont(fontDiner);
   xPosition = map(gamma, -60, 60, 0, width);
@@ -230,7 +232,9 @@ function touchStarted() {
   }
 }
 //---------------------------------------------------touch touchStarted
-
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 
 //---------------------------------------------------------- car class!!
 function Piece() {
