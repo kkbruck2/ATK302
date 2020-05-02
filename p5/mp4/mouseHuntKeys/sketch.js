@@ -230,24 +230,24 @@ function Piece() {
 //--------------------------------------------------------end pieces class
 
 //-----------------------------------------------------left and right rotate
-// function keyPressed() {
-//
-//   //
-//   // if (keyCode === LEFT_ARROW) {
-//   //
-//   //   // translate(catPos.x, catPos.y);
-//   //   // rotateZ(angle);
-//   //   // cat(catPos.x, catPos.y);
-//   //   rotate(catRot);
-//   // }
-//   // //
-//   // if (keyCode === RIGHT_ARROW) {
-//   //   //     // translate(catPos.x, catPos.y);
-//   //   //     // rotate(angle);
-//   //   //     // cat(catPos.x, catPos.y);
-//   //   //   catPos.x += 20 ;
-//   }
-// }
+function keyPressed() {
+
+
+  if (keyCode === LEFT_ARROW) {
+
+    translate(catPos.x, catPos.y);
+    rotateZ(angle);
+    cat(catPos.x, catPos.y);
+    rotate(catRot);
+  }
+  //
+  if (keyCode === RIGHT_ARROW) {
+    //     // translate(catPos.x, catPos.y);
+    //     // rotate(angle);
+    //     // cat(catPos.x, catPos.y);
+    //   catPos.x += 20 ;
+  }
+}
 
 function checkForKeys() {
     var catRot = cos(angle);

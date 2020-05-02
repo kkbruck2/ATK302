@@ -57,6 +57,7 @@ function setup() {
   angleMode(DEGREES);
   fontDiner = loadFont('assets/FontdinerSwanky-Regular.ttf');
   chalk = loadFont('assets/Chalkboard.ttc');
+  montMed = loadFont('assets/Montserrat-Medium.ttf');
   grid = loadImage('assets/grid.png');
   bkgMusic.play();
 
@@ -97,6 +98,9 @@ function draw() {
       image(start, width / 2, height / 2 + 30);
       winSound.stop();
       loseSound.stop();
+      textSize(40);
+      textFont(montMed);
+      text("Click to Start Game", width / 2, height - 35);
 
 
       break;
@@ -118,10 +122,14 @@ function draw() {
 
     case 4: // the win state
       fill(0);
+        textFont(fontDiner);
       textSize(60);
       textAlign(CENTER);
-      text("Hee..Hee!       WE WON!", width / 2 - 15, 120);
+      text("Hee...Hee!       WE WON!", width / 2 - 15, 120);
       image(win, width / 2, height / 2);
+      textSize(40);
+      textFont(montMed);
+      text("Click to Reset Game", width / 2, height - 35);
 
       break;
 
@@ -133,10 +141,15 @@ function draw() {
 
     case 6: // the lose state
       fill(0);
+      textFont(fontDiner);
       textSize(60);
       textAlign(CENTER);
       text("uh...oh!", width / 2, 120);
       image(lose, width / 2, 400);
+      textSize(40);
+      textFont(montMed);
+      text("Click to Reset Game", width / 2, height - 35);
+
 
       break;
   }
@@ -178,8 +191,8 @@ function Piece() {
 
     push();
     // animating the mices
-    if (this.vel > 0)map(this.maxTimer * -1 === this.vel.mag());
-    if (this.vel < 0)map(this.maxTimer === this.vel.mag());
+    if (this.vel > 0) map(this.maxTimer * -1 === this.vel.mag());
+    if (this.vel < 0) map(this.maxTimer === this.vel.mag());
     translate(this.pos.x, this.pos.y);
     rotate(this.vel.heading());
     image(mice[this.miceNum], 0, 0);
@@ -249,7 +262,7 @@ function resetTheGame() {
     pieces.push(new Piece());
   }
   timer = 0;
-  stomachX = 72;
+  stomachX = 65;
 
 }
 //----------------------------------------------------------end game reset
@@ -261,7 +274,7 @@ function game() {
     pieces[i].drive();
     if (pieces[i].pos.dist(catPos) < 100) {
       pieces.splice(i, 1);
-      stomachX += 2;
+      stomachX += 3;
     }
   }
 

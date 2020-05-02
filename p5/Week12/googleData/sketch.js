@@ -3,7 +3,7 @@ var speed;
 var direction;
 
 function preload() {
-  mycat = loadImage('assets/bart2.png');
+  mycat = loadImage('assets/bart3.png');
   mydog = loadImage('assets/winston2.png');
   grid = loadImage('assets/grid.png')
 }
@@ -74,14 +74,14 @@ function Circle(myName,myPet) {  //Circle(myName, myPet)
   this.display = function() {
     if (this.pet == "Cat") {
       fill(60, 0, 255);
-      rect(this.pos.x, this.pos.y + 58, 120, 40)
+      rect(this.pos.x, this.pos.y + 58, 160, 40)
       fill(0);
       textSize(20);
       text(this.name, this.pos.x, this.pos.y + 64);
       image(mycat, this.pos.x, this.pos.y); // put an ellipse here
     } else  {
       fill(255, 0, 60);
-      rect(this.pos.x, this.pos.y + 66, 120, 40)
+      rect(this.pos.x, this.pos.y + 66, 160, 40)
       fill(0);
       textSize(20);
       text(this.name, this.pos.x, this.pos.y + 74);
