@@ -247,9 +247,9 @@ function mouseMoved() {
   translate(catPos.x, catPos.y);
 
   //rotate(angle);
-  cat(catPos.x, catPos.y);
-  angle -= 10;
-  pop();
+  //cat(catPos.x, catPos.y);
+  //angle -= 10;
+  //pop();
 
 }
 
