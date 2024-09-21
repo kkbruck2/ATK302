@@ -230,7 +230,7 @@ function Piece() {
 
 //--------------------------------------------------------end pieces class
 //------------------------------------------------------mouse keyPressed
-//function mousePressed() {
+function mousePressed() {
   xOffset = mouseX - catPos.x;
   yOffset = mouseY - catPos.y;
 }
@@ -246,7 +246,7 @@ function mouseMoved() {
     push();
   translate(catPos.x, catPos.y);
 
-  rotate(angle);
+  //rotate(angle);
   cat(catPos.x, catPos.y);
   angle -= 10;
   pop();
