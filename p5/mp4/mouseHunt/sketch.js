@@ -230,7 +230,7 @@ function Piece() {
 
 //--------------------------------------------------------end pieces class
 //------------------------------------------------------mouse keyPressed
-function mousePressed() {
+//function mousePressed() {
   xOffset = mouseX - catPos.x;
   yOffset = mouseY - catPos.y;
 }
