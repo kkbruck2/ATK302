@@ -240,12 +240,12 @@ function keyPressed() {
     cat(catPos.x, catPos.y);
     rotate(catRot);
   }
-  //
+  
   if (keyCode === RIGHT_ARROW) {
-    //     // translate(catPos.x, catPos.y);
-    //     // rotate(angle);
-    //     // cat(catPos.x, catPos.y);
-    //   catPos.x += 20 ;
+    translate(catPos.x, catPos.y);
+    rotate(angle);
+    cat(catPos.x, catPos.y);
+    catPos.x += 20 ;
   }
 }
 
