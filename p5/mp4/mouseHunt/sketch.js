@@ -1,3 +1,8 @@
+var start;
+var win;
+var lose;
+var winSound;
+var loseSound;
 var chalk;
 var fontDiner;
 var grid;
@@ -13,14 +18,13 @@ var pieces = [];
 var direction = [];
 var stomachX = 65;
 var stomachY = 214;
-var start;
-var win;
-var lose;
-var winSound;
-var loseSound;
+
 //------------------------------------------------------var end
 //------------------------------------------------------preload
 function preload() {
+  bkgMusic = loadSound('assets/456797__anechoix__jazz-music-loop.mp3');
+  winSound = loadSound('assets/396174__funwithsound__success-triumph-resolution-sound-effect_01.mp3')
+  loseSound = loadSound('assets/174427__badly99__domino-sound-effect_01.mp3')
   myLegs = loadImage('assets/legs.png');
   myBody = loadImage('assets/body.png')
   head = loadImage('assets/head_1.png');
@@ -35,9 +39,7 @@ function preload() {
   mice[3] = loadImage('assets/mice4.png');
   mice[4] = loadImage('assets/mice3.png');
   mice[5] = loadImage('assets/mice2.png');
-  bkgMusic = loadSound('assets/456797__anechoix__jazz-music-loop.mp3');
-  winSound = loadSound('assets/396174__funwithsound__success-triumph-resolution-sound-effect_01.mp3')
-  loseSound = loadSound('assets/174427__badly99__domino-sound-effect_01.mp3')
+
 
   bkgMusic.loop();
   bkgMusic.stop();
